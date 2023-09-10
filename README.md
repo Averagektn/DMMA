@@ -11,6 +11,13 @@ The features of the objects are given randomly, they are the coordinates of the 
 The purpose and result of the algorithm is to define K typical class representatives as class centers and to distribute the rest of the sample objects around them as compactly as possible.
 ---
 ## Lab №2
+* В качестве примера метода распознавания образов, использующего процедуру самообучения, рассмотрим алгоритм максимина.
+Исходные данные – число образов, которые нужно разделить на классы. Количество образов предлагается брать в диапазоне от 1000 до 100000. Признаки объектов задаются случайным образом, это координаты
+векторов.
+Цель и результат работы алгоритма – исходя из произвольного выбора максимально компактно разделить объекты на классы, определив ядро каждого класса.
+* As an example of a pattern recognition method using the self-learning procedure, let us consider the maximin algorithm.
+The initial data is the number of images to be divided into classes. It is suggested to take the number of images in the range from 1000 to 100000. The features of the objects are set randomly, they are coordinates of the vectors.
+The goal and result of the algorithm is to divide objects into classes as compactly as possible based on a random choice, defining the core of each class.
 ---
 ## Lab №3
 ---
