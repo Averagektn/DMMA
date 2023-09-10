@@ -2,13 +2,34 @@ using System.Drawing.Text;
 
 namespace lab1
 {
+    /// <summary>
+    /// Form to draw starting clusters
+    /// </summary>
     public partial class MainForm : Form
     {
+        /// <summary>
+        /// All created clusters of different colors with dots
+        /// </summary>
         public List<Cluster> clusters = new();
 
+        /// <summary>
+        /// Draws dots and clusters centers
+        /// </summary>
         private readonly Graphics graphics;
+
+        /// <summary>
+        /// All created dots
+        /// </summary>
         private readonly List<Dot> dots;
+
+        /// <summary>
+        /// Generates random numbers
+        /// </summary>
         private readonly Random random = new();
+
+        /// <summary>
+        /// Cluster center on the previous step
+        /// </summary>
         private readonly List<Point> prevCenters = new();
 
         public MainForm()
@@ -33,6 +54,10 @@ namespace lab1
             graphics = CreateGraphics();
         }
 
+        /// <summary>
+        /// Initializes the <see cref="dots"/> list and finds their cluster
+        /// </summary>
+        /// <param name="num">Number of dots to be created</param>
         private void GenerateDots(int num)
         {
             var random = new Random();
@@ -45,7 +70,11 @@ namespace lab1
             }
         }
 
-
+        /// <summary>
+        /// Draws the intial state of the clusters
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void MainForm_Paint(object sender, PaintEventArgs e)
         {
             bool isCounting = true;
@@ -83,6 +112,13 @@ namespace lab1
             resultForm.Show();
         }
 
+        /// <summary>
+        /// Checks if the point is the same
+        /// </summary>
+        /// <param name="p1">First point</param>
+        /// <param name="p2">Second point</param>
+        /// <returns><see langword="true"/> if these points are almoust qeual, 
+        /// <see langword="false"/> otherwise</returns>
         private bool IsSamePoint(Point p1, Point p2)
         {
             return !(Math.Abs(p1.X - p2.X) <= 5 && Math.Abs(p1.Y - p2.Y) <= 5);

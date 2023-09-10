@@ -1,10 +1,24 @@
 ﻿namespace lab1
 {
+    /// <summary>
+    /// Form to draw results
+    /// </summary>
     public partial class Result : Form
     {
+        /// <summary>
+        /// Draws dots and clusters centers
+        /// </summary>
         public Graphics graphics;
+
+        /// <summary>
+        /// Initial form
+        /// </summary>
         private readonly MainForm mainForm;
 
+        /// <summary>
+        /// Creates child's form
+        /// </summary>
+        /// <param name="mainForm">Parent</param>
         public Result(MainForm mainForm)
         {
             InitializeComponent();
