@@ -2,7 +2,7 @@
 
 namespace lab2
 {
-    internal class Cluster_MinMax : Cluster
+    public class Cluster_MinMax : Cluster
     {
         public Cluster_MinMax(Color color, int x, int y) : base(color, x, y)
         {

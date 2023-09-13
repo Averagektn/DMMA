@@ -50,7 +50,7 @@
         /// <param name="p1"></param>
         /// <param name="p2"></param>
         /// <returns></returns>
-        public static int CountDistance(Point p1, Point p2)
+        private static int CountDistance(Point p1, Point p2)
         {
             var a = Math.Pow((p1.X - p2.X + WIDTH / 2), 2);
             var b = Math.Pow((p1.Y - p2.Y + HEIGHT / 2), 2);
