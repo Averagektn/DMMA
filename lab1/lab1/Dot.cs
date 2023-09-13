@@ -1,13 +1,13 @@
 ﻿namespace lab1
 {
-    public class Dot
+    public sealed class Dot
     {
         public const int WIDTH = 8;
         public const int HEIGHT = 8;
+        public Point TopLeft { get; private set; }
 
-        public Point TopLeft { get; protected set; }
-        protected Pen pen;
-        protected Brush brush { get => new SolidBrush(pen.Color);}
+        private Pen pen;
+        private Brush brush { get => new SolidBrush(pen.Color);}
         
         public Dot(Color color, int x, int y)
         {
@@ -21,7 +21,11 @@
             g.FillEllipse(brush, TopLeft.X, TopLeft.Y, WIDTH, HEIGHT);
         }
 
-        public void FindCluster(List<Cluster> clusters)
+        /// <summary>
+        /// Finds the closest cluster
+        /// </summary>
+        /// <param name="clusters"></param>
+        public void FindCluster(List<Cluster_KAverage> clusters)
         {
             int ind = 0;
             int minDistance = CountDistance(TopLeft, clusters[ind].Center);
@@ -40,7 +44,13 @@
             clusters[ind].Dots.Add(this);
         }
 
-        public int CountDistance(Point p1, Point p2)
+        /// <summary>
+        /// Counts distance between two points
+        /// </summary>
+        /// <param name="p1"></param>
+        /// <param name="p2"></param>
+        /// <returns></returns>
+        public static int CountDistance(Point p1, Point p2)
         {
             var a = Math.Pow((p1.X - p2.X + WIDTH / 2), 2);
             var b = Math.Pow((p1.Y - p2.Y + HEIGHT / 2), 2);

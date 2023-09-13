@@ -35,7 +35,7 @@
         {
             foreach (var cluster in mainForm.clusters)
             {
-                cluster.Draw(graphics);
+                cluster.DrawDots(graphics);
                 cluster.DrawCenter(graphics);
             }
 

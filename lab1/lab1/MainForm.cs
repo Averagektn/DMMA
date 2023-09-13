@@ -10,7 +10,7 @@ namespace lab1
         /// <summary>
         /// All created clusters of different colors with dots
         /// </summary>
-        public List<Cluster> clusters = new();
+        public List<Cluster_KAverage> clusters = new();
 
         /// <summary>
         /// Draws dots and clusters centers
@@ -36,13 +36,13 @@ namespace lab1
         {
             InitializeComponent();
 
-            clusters.Add(new Cluster(Color.Red, random.Next(Width - 20), random.Next(Height - 20)));
-            clusters.Add(new Cluster(Color.Green, random.Next(Width - 20), random.Next(Height - 20)));
-            clusters.Add(new Cluster(Color.Blue, random.Next(Width - 20), random.Next(Height - 20)));
-            clusters.Add(new Cluster(Color.Yellow, random.Next(Width - 20), random.Next(Height - 20)));
-            clusters.Add(new Cluster(Color.Black, random.Next(Width - 20), random.Next(Height - 20)));
-            clusters.Add(new Cluster(Color.Purple, random.Next(Width - 20), random.Next(Height - 20)));
-            clusters.Add(new Cluster(Color.Brown, random.Next(Width - 20), random.Next(Height - 20)));
+            clusters.Add(new Cluster_KAverage(Color.Red, random.Next(Width - 20), random.Next(Height - 20)));
+            clusters.Add(new Cluster_KAverage(Color.Green, random.Next(Width - 20), random.Next(Height - 20)));
+            clusters.Add(new Cluster_KAverage(Color.Blue, random.Next(Width - 20), random.Next(Height - 20)));
+            clusters.Add(new Cluster_KAverage(Color.Yellow, random.Next(Width - 20), random.Next(Height - 20)));
+            clusters.Add(new Cluster_KAverage(Color.Black, random.Next(Width - 20), random.Next(Height - 20)));
+            clusters.Add(new Cluster_KAverage(Color.Purple, random.Next(Width - 20), random.Next(Height - 20)));
+            clusters.Add(new Cluster_KAverage(Color.Brown, random.Next(Width - 20), random.Next(Height - 20)));
 
             foreach (var cluster in clusters)
             {
@@ -81,7 +81,7 @@ namespace lab1
 
             foreach (var cluster in clusters)
             {
-                cluster.Draw(graphics);
+                cluster.DrawDots(graphics);
                 cluster.DrawCenter(graphics);
             }
 
