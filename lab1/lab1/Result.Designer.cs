@@ -35,7 +35,9 @@
             AutoScaleDimensions = new SizeF(8F, 19F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(584, 761);
+            Location = new Point(800, 100);
             Name = "Result";
+            StartPosition = FormStartPosition.Manual;
             Text = "Result";
             Paint += Result_Paint;
             ResumeLayout(false);

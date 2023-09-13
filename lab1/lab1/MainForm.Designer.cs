@@ -35,9 +35,10 @@
             AutoScaleDimensions = new SizeF(8F, 19F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(584, 761);
-            DoubleBuffered = true;
             FormBorderStyle = FormBorderStyle.FixedSingle;
+            Location = new Point(100, 100);
             Name = "MainForm";
+            StartPosition = FormStartPosition.Manual;
             Text = "Lab1";
             Paint += MainForm_Paint;
             ResumeLayout(false);

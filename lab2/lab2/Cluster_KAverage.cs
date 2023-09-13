@@ -2,7 +2,7 @@
 
 namespace lab2
 {
-    internal class Cluster_KAverage : Cluster
+    public class Cluster_KAverage : Cluster
     {
         public Cluster_KAverage(Color color, int x, int y) : base(color, x, y)
         {

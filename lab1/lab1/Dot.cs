@@ -6,19 +6,19 @@
         public const int HEIGHT = 8;
         public Point TopLeft { get; private set; }
 
-        private Pen pen;
-        private Brush brush { get => new SolidBrush(pen.Color);}
+        private readonly Pen Pen;
+        private Brush Brush { get => new SolidBrush(Pen.Color);}
         
         public Dot(Color color, int x, int y)
         {
             TopLeft = new Point(x, y);
-            pen = new Pen(color, 1);
+            Pen = new Pen(color, 1);
         }
 
         public void Draw(Graphics g)
         {
-            g.DrawEllipse(pen, TopLeft.X, TopLeft.Y, WIDTH, HEIGHT);
-            g.FillEllipse(brush, TopLeft.X, TopLeft.Y, WIDTH, HEIGHT);
+            g.DrawEllipse(Pen, TopLeft.X, TopLeft.Y, WIDTH, HEIGHT);
+            g.FillEllipse(Brush, TopLeft.X, TopLeft.Y, WIDTH, HEIGHT);
         }
 
         /// <summary>
@@ -39,7 +39,7 @@
                 }
             }
 
-            pen.Color = clusters[ind].Color; 
+            Pen.Color = clusters[ind].Color; 
             
             clusters[ind].Dots.Add(this);
         }
@@ -50,7 +50,7 @@
         /// <param name="p1"></param>
         /// <param name="p2"></param>
         /// <returns></returns>
-        public static int CountDistance(Point p1, Point p2)
+        private static int CountDistance(Point p1, Point p2)
         {
             var a = Math.Pow((p1.X - p2.X + WIDTH / 2), 2);
             var b = Math.Pow((p1.Y - p2.Y + HEIGHT / 2), 2);

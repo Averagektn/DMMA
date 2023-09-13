@@ -40,7 +40,7 @@ namespace lab1
         /// Draws all the point of the cluster
         /// </summary>
         /// <param name="g"><see cref="Graphics"/> to draw on</param>
-        public void Draw(Graphics g)
+        public void DrawDots(Graphics g)
         {
             foreach(var dot in Dots)
             {
