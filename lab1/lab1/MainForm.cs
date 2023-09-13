@@ -44,13 +44,13 @@ namespace lab1
             clusters.Add(new Cluster(Color.Purple, random.Next(Width - 20), random.Next(Height - 20)));
             clusters.Add(new Cluster(Color.Brown, random.Next(Width - 20), random.Next(Height - 20)));
 
-            foreach(var cluster in clusters)
+            foreach (var cluster in clusters)
             {
                 prevCenters.Add(cluster.Center);
             }
 
             dots = new List<Dot>();
-            GenerateDots(10000);
+            GenerateDots(5000);
             graphics = CreateGraphics();
         }
 
@@ -71,20 +71,21 @@ namespace lab1
         }
 
         /// <summary>
-        /// Draws the intial state of the clusters
+        /// Paints resulting form and saves it in .bmp
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void MainForm_Paint(object sender, PaintEventArgs e)
         {
             bool isCounting = true;
+
             foreach (var cluster in clusters)
             {
                 cluster.Draw(graphics);
                 cluster.DrawCenter(graphics);
             }
 
-            while(isCounting)
+            while (isCounting)
             {
                 isCounting = false;
 
@@ -99,7 +100,7 @@ namespace lab1
                     dots[i].FindCluster(clusters);
                 }
 
-                for(int i = 0; i < clusters.Count; i++)
+                for (int i = 0; i < clusters.Count; i++)
                 {
                     if (!IsSamePoint(clusters[i].Center, prevCenters[i]))
                     {
@@ -110,6 +111,14 @@ namespace lab1
 
             var resultForm = new Result(this);
             resultForm.Show();
+
+            var screenRC = RectangleToScreen(new Rectangle(0, 0, Width, Height));
+            var bmp = new Bitmap(screenRC.Width - 20, screenRC.Height - 20);
+            using (Graphics g = Graphics.FromImage(bmp))
+            {
+                g.CopyFromScreen(screenRC.Left, screenRC.Top, 0, 0, bmp.Size);
+            }
+            bmp.Save("Initial.bmp");
         }
 
         /// <summary>
@@ -121,7 +130,7 @@ namespace lab1
         /// <see langword="false"/> otherwise</returns>
         private bool IsSamePoint(Point p1, Point p2)
         {
-            return !(Math.Abs(p1.X - p2.X) <= 5 && Math.Abs(p1.Y - p2.Y) <= 5);
+            return !(Math.Abs(p1.X - p2.X) <= 1 && Math.Abs(p1.Y - p2.Y) <= 1);
         }
     }
 }

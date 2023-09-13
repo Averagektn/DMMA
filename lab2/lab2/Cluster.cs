@@ -22,7 +22,7 @@ namespace lab1
         /// <summary>
         /// Size of cluster center to be drawn
         /// </summary>
-        private const int WIDTH = 20, HEIGHT = 20;
+        protected const int WIDTH = 20, HEIGHT = 20;
 
         /// <summary>
         /// Generates cluster with specified <see cref="System.Drawing.Color"/> and coordinates
@@ -59,32 +59,12 @@ namespace lab1
         }
 
         /// <summary>
-        /// Counts the best center in the middle of the cluster
-        /// </summary>
-        /// <returns>new <see cref="Center"/></returns>
-        public Point GetBestClusterCenter()
-        {
-            var bestCenter = new Point((int)Dots.Average(x => x.TopLeft.X), (int)Dots.Average(x => x.TopLeft.Y));
-            var minDifferent = double.MaxValue;
-            var minDifferentPoint = new Point();
-            foreach (var centerCandidate in Dots)
-            {
-                var different = GetDotsDistance(bestCenter, centerCandidate.TopLeft);
-                if (!(different < minDifferent)) continue;
-                minDifferent = different;
-                minDifferentPoint = centerCandidate.TopLeft;
-            }
-
-            return minDifferentPoint;
-        }
-
-        /// <summary>
         /// Counts the distance between two dots
         /// </summary>
         /// <param name="firstDot"></param>
         /// <param name="secondDot"></param>
         /// <returns>Distance</returns>
-        private static double GetDotsDistance(Point firstDot, Point secondDot)
+        protected static double GetDotsDistance(Point firstDot, Point secondDot)
         {
             var xDifferent = firstDot.X - secondDot.X;
             var yDifferent = firstDot.Y - secondDot.Y;

@@ -1,6 +1,6 @@
-﻿namespace lab1
+﻿namespace lab2
 {
-    partial class MainForm
+    partial class InitialForm
     {
         /// <summary>
         ///  Required designer variable.
@@ -30,16 +30,13 @@
         {
             SuspendLayout();
             // 
-            // MainForm
+            // InitialForm
             // 
             AutoScaleDimensions = new SizeF(8F, 19F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(584, 761);
-            DoubleBuffered = true;
-            FormBorderStyle = FormBorderStyle.FixedSingle;
-            Name = "MainForm";
-            Text = "Lab1";
-            Paint += MainForm_Paint;
+            Name = "InitialForm";
+            Text = "Initial";
             ResumeLayout(false);
         }
 

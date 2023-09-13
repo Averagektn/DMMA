@@ -4,11 +4,11 @@
     {
         public const int WIDTH = 8;
         public const int HEIGHT = 8;
-
         public Point TopLeft { get; protected set; }
+
         protected Pen pen;
-        protected Brush brush { get => new SolidBrush(pen.Color);}
-        
+        protected Brush brush { get => new SolidBrush(pen.Color); }
+
         public Dot(Color color, int x, int y)
         {
             TopLeft = new Point(x, y);
@@ -21,6 +21,10 @@
             g.FillEllipse(brush, TopLeft.X, TopLeft.Y, WIDTH, HEIGHT);
         }
 
+        /// <summary>
+        /// Finds the closest cluster
+        /// </summary>
+        /// <param name="clusters"></param>
         public void FindCluster(List<Cluster> clusters)
         {
             int ind = 0;
@@ -35,11 +39,17 @@
                 }
             }
 
-            pen.Color = clusters[ind].Color; 
-            
+            pen.Color = clusters[ind].Color;
+
             clusters[ind].Dots.Add(this);
         }
 
+        /// <summary>
+        /// Counts distance between two points
+        /// </summary>
+        /// <param name="p1"></param>
+        /// <param name="p2"></param>
+        /// <returns></returns>
         public int CountDistance(Point p1, Point p2)
         {
             var a = Math.Pow((p1.X - p2.X + WIDTH / 2), 2);

@@ -26,6 +26,11 @@
             this.mainForm = mainForm;
         }
 
+        /// <summary>
+        /// Paints resulting form and saves it in .bmp
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         public void Result_Paint(object sender, PaintEventArgs e)
         {
             foreach (var cluster in mainForm.clusters)
@@ -33,6 +38,14 @@
                 cluster.Draw(graphics);
                 cluster.DrawCenter(graphics);
             }
+
+            var screenRC = RectangleToScreen(new Rectangle(0, 0, Width, Height));
+            var bmp = new Bitmap(screenRC.Width - 20, screenRC.Height - 20);
+            using (Graphics g = Graphics.FromImage(bmp))
+            {
+                g.CopyFromScreen(screenRC.Left, screenRC.Top, 0, 0, bmp.Size);
+            }
+            bmp.Save("Final.bmp");
         }
     }
 }
