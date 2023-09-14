@@ -2,8 +2,8 @@
 {
     public sealed class Dot
     {
-        public const int WIDTH = 8;
-        public const int HEIGHT = 8;
+        public const int WIDTH = 2;
+        public const int HEIGHT = 2;
         public Point TopLeft { get; private set; }
 
         private readonly Pen Pen;

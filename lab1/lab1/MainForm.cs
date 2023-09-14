@@ -36,13 +36,13 @@ namespace lab1
         {
             InitializeComponent();
 
-            clusters.Add(new Cluster_KAverage(Color.Red, random.Next(Width - 20), random.Next(Height - 20)));
-            clusters.Add(new Cluster_KAverage(Color.Green, random.Next(Width - 20), random.Next(Height - 20)));
-            clusters.Add(new Cluster_KAverage(Color.Blue, random.Next(Width - 20), random.Next(Height - 20)));
-            clusters.Add(new Cluster_KAverage(Color.Yellow, random.Next(Width - 20), random.Next(Height - 20)));
-            clusters.Add(new Cluster_KAverage(Color.Black, random.Next(Width - 20), random.Next(Height - 20)));
-            clusters.Add(new Cluster_KAverage(Color.Purple, random.Next(Width - 20), random.Next(Height - 20)));
-            clusters.Add(new Cluster_KAverage(Color.Brown, random.Next(Width - 20), random.Next(Height - 20)));
+            clusters.Add(new Cluster_KAverage(Color.Red,    random.Next(Width - 60), random.Next(Height - 60)));
+            clusters.Add(new Cluster_KAverage(Color.Green,  random.Next(Width - 60), random.Next(Height - 60)));
+            clusters.Add(new Cluster_KAverage(Color.Blue,   random.Next(Width - 60), random.Next(Height - 60)));
+            clusters.Add(new Cluster_KAverage(Color.Yellow, random.Next(Width - 60), random.Next(Height - 60)));
+            clusters.Add(new Cluster_KAverage(Color.Black,  random.Next(Width - 60), random.Next(Height - 60)));
+            clusters.Add(new Cluster_KAverage(Color.Purple, random.Next(Width - 60), random.Next(Height - 60)));
+            clusters.Add(new Cluster_KAverage(Color.Brown,  random.Next(Width - 60), random.Next(Height - 60)));
 
             foreach (var cluster in clusters)
             {
@@ -50,7 +50,7 @@ namespace lab1
             }
 
             dots = new List<Dot>();
-            GenerateDots(5000);
+            GenerateDots(10000);
             graphics = CreateGraphics();
         }
 
