@@ -1,6 +1,3 @@
-using System.Drawing;
-using System;
-
 namespace lab1
 {
     /// <summary>
@@ -8,13 +5,28 @@ namespace lab1
     /// </summary>
     public partial class MainForm : Form
     {
+        private int PictureHeight
+        {
+            get
+            {
+                return int.Parse(tbHeight.Text);
+            }
+        }
+
+        private int PictureWidth
+        {
+            get
+            {
+                return int.Parse(tbWidth.Text);
+            }
+        }
         /// <summary>
         /// All created clusters of different colors with dots
         /// </summary>
         private List<Cluster_KAverage> _clusters = new();
 
-        private readonly Graphics _graphics;
-        private readonly Bitmap _bitmap;
+        private Graphics _graphics;
+        private Bitmap _bitmap;
 
         private static int s_step;
         private int _bound;
@@ -38,39 +50,21 @@ namespace lab1
         {
             InitializeComponent();
 
-            DeletePrevFiles();
+            DeletePrevFiles(@"Initial*");
+            DeletePrevFiles(@"Final*");
 
             s_step = 0;
             _bound = -1;
 
-            _clusters.Add(new Cluster_KAverage(Color.Red, _random.Next(Width - 60), _random.Next(Height - 60)));
-            _clusters.Add(new Cluster_KAverage(Color.Green, _random.Next(Width - 60), _random.Next(Height - 60)));
-            _clusters.Add(new Cluster_KAverage(Color.Blue, _random.Next(Width - 60), _random.Next(Height - 60)));
-            _clusters.Add(new Cluster_KAverage(Color.Yellow, _random.Next(Width - 60), _random.Next(Height - 60)));
-            _clusters.Add(new Cluster_KAverage(Color.Black, _random.Next(Width - 60), _random.Next(Height - 60)));
-            _clusters.Add(new Cluster_KAverage(Color.Purple, _random.Next(Width - 60), _random.Next(Height - 60)));
-            _clusters.Add(new Cluster_KAverage(Color.Brown, _random.Next(Width - 60), _random.Next(Height - 60)));
-
-            foreach (var cluster in _clusters)
-            {
-                _prevCenters.Add(cluster.Center);
-            }
             _dots = new List<Dot>();
-            GenerateDots(10000);
-            _bitmap = new Bitmap(Width + 40, Height + 40, System.Drawing.Imaging.PixelFormat.Format32bppPArgb);
-            _graphics = Graphics.FromImage(_bitmap);
-            _graphics.Clear(Color.White);
-
-            ProcessClusters();
         }
 
         /// <summary>
         /// Deletes previous pictures
         /// </summary>
-        private static void DeletePrevFiles()
+        private static void DeletePrevFiles(string deletingPattern)
         {
-            string filesToDelete = @"Step*";
-            string[] fileList = Directory.GetFiles(Directory.GetCurrentDirectory(), filesToDelete);
+            string[] fileList = Directory.GetFiles(Directory.GetCurrentDirectory(), deletingPattern);
             foreach (string file in fileList)
             {
                 File.Delete(file);
@@ -86,13 +80,7 @@ namespace lab1
         {
             bool isCounting = true;
 
-            foreach (var cluster in _clusters)
-            {
-                cluster.DrawDots(_graphics);
-                cluster.DrawCenter(_graphics);
-            }
-            _bitmap.Save("Initial.bmp");
-            _graphics.Clear(Color.White);
+            SaveToBMP("Initial");
 
             while (isCounting)
             {
@@ -118,25 +106,29 @@ namespace lab1
                 }
             }
 
+            SaveToBMP("Final");
+        }
+
+        private void SaveToBMP(string filename)
+        {
             foreach (var cluster in _clusters)
             {
                 cluster.DrawDots(_graphics);
                 cluster.DrawCenter(_graphics);
             }
-            _bitmap.Save("Final.bmp");
+            _bitmap.Save(filename + ".bmp");
+            _graphics.Clear(Color.White);
         }
 
         /// <summary>
-        /// Initializes the <see cref="dots"/> list and finds their cluster
+        /// Initializes the <see cref="_dots"/> list and finds their cluster
         /// </summary>
         /// <param name="num">Number of dots to be created</param>
         private void GenerateDots(int num)
         {
-            var random = new Random();
-
             for (int i = 0; i < num; i++)
             {
-                var dot = new Dot(Color.Black, _random.Next(Size.Width), _random.Next(Size.Height));
+                var dot = new Dot(Color.Black, _random.Next(PictureWidth), _random.Next(PictureHeight));
                 _dots.Add(dot);
                 _dots[i].FindCluster(_clusters);
             }
@@ -149,9 +141,36 @@ namespace lab1
         /// <param name="p2">Second point</param>
         /// <returns><see langword="true"/> if these points are almoust qeual, 
         /// <see langword="false"/> otherwise</returns>
-        private bool IsSamePoint(Point p1, Point p2)
+        private static bool IsSamePoint(Point p1, Point p2)
         {
             return !(Math.Abs(p1.X - p2.X) <= 1 && Math.Abs(p1.Y - p2.Y) <= 1);
+        }
+
+        private void sbDotsNum_Scroll(object sender, ScrollEventArgs e)
+        {
+            lblDotsTotal.Text = sbDotsNum.Value.ToString();
+        }
+
+        private void btnStart_Click(object sender, EventArgs e)
+        {
+            _bitmap = new Bitmap(PictureWidth, PictureHeight, System.Drawing.Imaging.PixelFormat.Format32bppPArgb);
+            _graphics = Graphics.FromImage(_bitmap);
+            _graphics.Clear(Color.White);
+
+            for (int i = 0; i < numClustersNum.Value; i++)
+            {
+                _clusters.Add(new Cluster_KAverage(Color.FromArgb(_random.Next(0, 256), _random.Next(0, 256),
+                    _random.Next(0, 256)), _random.Next(PictureWidth - 60), _random.Next(PictureHeight - 60)));
+            }
+
+            foreach (var cluster in _clusters)
+            {
+                _prevCenters.Add(cluster.Center);
+            }
+
+            GenerateDots(sbDotsNum.Value);
+            ProcessClusters();
+            btnStart.Enabled = false;
         }
     }
 }
