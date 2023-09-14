@@ -23,13 +23,10 @@ namespace lab1
         /// <summary>
         /// All created clusters of different colors with dots
         /// </summary>
-        private List<Cluster_KAverage> _clusters = new();
+        private readonly List<Cluster_KAverage> _clusters = new();
 
-        private Graphics _graphics;
-        private Bitmap _bitmap;
-
-        private static int s_step;
-        private int _bound;
+        private Graphics? _graphics;
+        private Bitmap? _bitmap;
 
         /// <summary>
         /// All created dots
@@ -52,9 +49,6 @@ namespace lab1
 
             DeletePrevFiles(@"Initial*");
             DeletePrevFiles(@"Final*");
-
-            s_step = 0;
-            _bound = -1;
 
             _dots = new List<Dot>();
         }
@@ -113,11 +107,11 @@ namespace lab1
         {
             foreach (var cluster in _clusters)
             {
-                cluster.DrawDots(_graphics);
-                cluster.DrawCenter(_graphics);
+                cluster.DrawDots(_graphics!);
+                cluster.DrawCenter(_graphics!);
             }
-            _bitmap.Save(filename + ".bmp");
-            _graphics.Clear(Color.White);
+            _bitmap?.Save(filename + ".bmp");
+            _graphics?.Clear(Color.White);
         }
 
         /// <summary>
@@ -171,6 +165,8 @@ namespace lab1
             GenerateDots(sbDotsNum.Value);
             ProcessClusters();
             btnStart.Enabled = false;
+
+            Close();
         }
     }
 }
