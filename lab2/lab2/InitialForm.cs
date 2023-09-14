@@ -2,13 +2,29 @@ namespace lab2
 {
     public partial class InitialForm : Form
     {
+        private int PictureWidth
+        {
+            get
+            {
+                return int.Parse(tbWidth.Text);
+            }
+        }
+
+        private int PictureHeight
+        {
+            get
+            {
+                return int.Parse(tbHeight.Text);
+            }
+        }
+
         /// <summary>
         /// Amount of steps for creating unique filenames
         /// </summary>
         private static int s_step;
 
-        private readonly Bitmap _bitmap;
-        private readonly Graphics _graphics;
+        private Bitmap? _bitmap;
+        private Graphics? _graphics;
 
         /// <summary>
         /// Minimal distance between clusters
@@ -18,7 +34,7 @@ namespace lab2
         /// <summary>
         /// All created clusters of different colors with dots
         /// </summary>
-        private List<Cluster_MinMax> _clusters = new();
+        private readonly List<Cluster_MinMax> _clusters = new();
 
         /// <summary>
         /// All created dots
@@ -40,9 +56,6 @@ namespace lab2
             _bound = -1;
             _clusters.Add(new Cluster_MinMax(Color.Red, _random.Next(255), _random.Next(255)));
             _dots = new List<Dot>();
-            _bitmap = new Bitmap(Width + 20, Height + 20, System.Drawing.Imaging.PixelFormat.Format32bppPArgb);
-            _graphics = Graphics.FromImage(_bitmap);
-            _graphics.Clear(Color.White);
         }
 
         /// <summary>
@@ -65,11 +78,11 @@ namespace lab2
         {
             foreach (var cluster in _clusters)
             {
-                cluster.DrawDots(_graphics);
-                cluster.DrawCenter(_graphics);
+                cluster.DrawDots(_graphics!);
+                cluster.DrawCenter(_graphics!);
             }
-            _bitmap.Save("Step_" + s_step + ".bmp");
-            _graphics.Clear(Color.White);
+            _bitmap?.Save("Step_" + s_step + ".bmp");
+            _graphics?.Clear(Color.White);
             s_step++;
         }
 
@@ -83,7 +96,7 @@ namespace lab2
 
             for (int i = 0; i < num; i++)
             {
-                var dot = new Dot(Color.Black, random.Next(Size.Width), random.Next(Size.Height));
+                var dot = new Dot(Color.Black, random.Next(PictureWidth), random.Next(PictureHeight));
                 _dots.Add(dot);
                 _dots[i].FindCluster(_clusters);
             }
@@ -161,6 +174,9 @@ namespace lab2
 
         private void btnStart_Click(object sender, EventArgs e)
         {
+            _bitmap = new Bitmap(PictureWidth + 20, PictureHeight + 20, System.Drawing.Imaging.PixelFormat.Format32bppPArgb);
+            _graphics = Graphics.FromImage(_bitmap);
+            _graphics.Clear(Color.White);
             int dotsNum = sbDotsNum.Value;
 
             GenerateDots(dotsNum);
