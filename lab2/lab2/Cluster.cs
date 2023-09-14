@@ -1,6 +1,4 @@
-﻿using System.Drawing;
-
-namespace lab1
+﻿namespace lab2
 {
     public class Cluster
     {
@@ -30,11 +28,11 @@ namespace lab1
         /// <param name="color"><see cref="Color"></param>
         /// <param name="x">X coordinate</param>
         /// <param name="y">Y coordinate</param>
-        public Cluster(Color color, int x, int y) 
+        public Cluster(Color color, int x, int y)
         {
             Color = color;
             Center = new Point(x, y);
-        }   
+        }
 
         /// <summary>
         /// Draws all the point of the cluster
@@ -42,7 +40,7 @@ namespace lab1
         /// <param name="g"><see cref="Graphics"/> to draw on</param>
         public void DrawDots(Graphics g)
         {
-            foreach(var dot in Dots)
+            foreach (var dot in Dots)
             {
                 dot.Draw(g);
             }
