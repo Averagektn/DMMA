@@ -40,8 +40,9 @@ namespace lab2
             _bound = -1;
             _clusters.Add(new Cluster_MinMax(Color.Red, _random.Next(255), _random.Next(255)));
             _dots = new List<Dot>();
-            _bitmap = new Bitmap(Width + 40, Height + 40, System.Drawing.Imaging.PixelFormat.Format32bppPArgb);
+            _bitmap = new Bitmap(Width + 20, Height + 20, System.Drawing.Imaging.PixelFormat.Format32bppPArgb);
             _graphics = Graphics.FromImage(_bitmap);
+            _graphics.Clear(Color.White);
         }
 
         /// <summary>
@@ -68,6 +69,7 @@ namespace lab2
                 cluster.DrawCenter(_graphics);
             }
             _bitmap.Save("Step_" + s_step + ".bmp");
+            _graphics.Clear(Color.White);
             s_step++;
         }
 

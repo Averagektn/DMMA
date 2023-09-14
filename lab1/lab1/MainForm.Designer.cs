@@ -40,7 +40,6 @@
             Name = "MainForm";
             StartPosition = FormStartPosition.Manual;
             Text = "Lab1";
-            Paint += MainForm_Paint;
             ResumeLayout(false);
         }
 
