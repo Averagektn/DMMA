@@ -5,17 +5,17 @@
         /// <summary>
         /// Clusters center
         /// </summary>
-        public Point Center;
+        public Point Center { get; set; }
 
         /// <summary>
         /// Dots of the cluster
         /// </summary>
-        public List<Dot> Dots = new();
+        public List<Dot> Dots { get; set; }
 
         /// <summary>
         /// Cluster's unique color
         /// </summary>
-        public readonly Color Color;
+        public Color Color { get; set; }
 
         /// <summary>
         /// Size of cluster center to be drawn
@@ -30,8 +30,16 @@
         /// <param name="y">Y coordinate</param>
         public Cluster(Color color, int x, int y)
         {
+            Dots = new();
             Color = color;
             Center = new Point(x, y);
+        }
+
+        public Cluster(Color color, List<Dot> dots, Point center)
+        {
+            Color = color;
+            Dots = dots;
+            Center = center;
         }
 
         /// <summary>
@@ -68,5 +76,6 @@
             var yDifferent = firstDot.Y - secondDot.Y;
             return Math.Sqrt(xDifferent * xDifferent + yDifferent * yDifferent);
         }
+
     }
 }

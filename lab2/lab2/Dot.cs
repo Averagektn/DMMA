@@ -48,6 +48,29 @@
         }
 
         /// <summary>
+        /// Finds the closest cluster
+        /// </summary>
+        /// <param name="clusters"></param>
+        public void FindCluster(List<Cluster_KAverage> clusters)
+        {
+            int ind = 0;
+            int minDistance = CountDistance(TopLeft, clusters[ind].Center);
+            for (int i = 1; i < clusters.Count; i++)
+            {
+                int currentDistance = CountDistance(TopLeft, clusters[i].Center);
+                if (minDistance > currentDistance)
+                {
+                    minDistance = currentDistance;
+                    ind = i;
+                }
+            }
+
+            Pen.Color = clusters[ind].Color;
+
+            clusters[ind].Dots.Add(this);
+        }
+
+        /// <summary>
         /// Counts distance between two points
         /// </summary>
         /// <param name="p1"></param>

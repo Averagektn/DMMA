@@ -6,6 +6,10 @@
         {
         }
 
+        public Cluster_MinMax(Color color, List<Dot> dots, Point center) : base(color, dots, center)
+        { 
+        }
+
         /// <summary>
         /// Creates a new cluster from the point farthest from the center of the current cluster
         /// </summary>

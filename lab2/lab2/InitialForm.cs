@@ -35,6 +35,7 @@ namespace lab2
         /// All created clusters of different colors with dots
         /// </summary>
         private readonly List<Cluster_MinMax> _clusters = new();
+        private List<Cluster_KAverage> _kClusters = new();
 
         /// <summary>
         /// All created dots
@@ -45,6 +46,8 @@ namespace lab2
         /// Generates random numbers
         /// </summary>
         private readonly Random _random = new();
+
+        private readonly List<Point> _prevCenters = new();
 
         public InitialForm()
         {
@@ -183,12 +186,16 @@ namespace lab2
             _clusters[0].Dots = new List<Dot>(_dots);
 
             ProcessClusters();
+
             foreach (var cluster in _clusters)
             {
                 cluster.DrawDots(_graphics);
                 cluster.DrawCenter(_graphics);
             }
             _bitmap.Save("Final.bmp");
+
+            ProcessKClusters();
+
             btnStart.Enabled = false;
             Close();
         }
@@ -196,6 +203,66 @@ namespace lab2
         private void sbDotsNum_Scroll(object sender, ScrollEventArgs e)
         {
             lblNumber.Text = sbDotsNum.Value.ToString();
+        }
+
+        /// <summary>
+        /// Paints resulting form and saves it in .bmp
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ProcessKClusters()
+        {
+            bool isCounting = true;
+
+            foreach (var cluster in _clusters)
+            {
+                _prevCenters.Add(cluster.Center);
+                _kClusters.Add(new Cluster_KAverage(cluster.Color, cluster.Dots, cluster.Center));
+            }
+
+            while (isCounting)
+            {
+                isCounting = false;
+
+                for (int i = 0; i < _kClusters.Count; i++)
+                {
+                    _kClusters[i].Center = _kClusters[i].GetBestClusterCenter();
+                    _kClusters[i].Dots.Clear();
+                }
+
+                for (int i = 0; i < _dots.Count; i++)
+                {
+                    _dots[i].FindCluster(_kClusters);
+                }
+
+                for (int i = 0; i < _kClusters.Count; i++)
+                {
+                    if (!IsSamePoint(_kClusters[i].Center, _prevCenters[i]))
+                    {
+                        isCounting = true;
+                    }
+                }
+            }
+
+            _graphics?.Clear(Color.White);
+            foreach (var cluster in _kClusters)
+            {
+                cluster.DrawDots(_graphics!);
+                cluster.DrawCenter(_graphics!);
+            }
+            _bitmap?.Save("KAverage.bmp");
+        }
+
+        /// <summary>
+        /// Checks if the point is the same
+        /// </summary>
+        /// <param name="p1">First point</param>
+        /// <param name="p2">Second point</param>
+        /// <returns><see langword="true"/> if these points are almoust qeual, 
+        /// <see langword="false"/> otherwise</returns>
+        private static bool IsSamePoint(Point p1, Point p2)
+        {
+            return !(Math.Abs(p1.X - p2.X) <= 1 && Math.Abs(p1.Y - p2.Y) <= 1);
         }
     }
 }
