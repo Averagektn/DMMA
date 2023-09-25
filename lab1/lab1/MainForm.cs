@@ -164,9 +164,15 @@ namespace lab1
 
             GenerateDots(sbDotsNum.Value);
             ProcessClusters();
-            btnStart.Enabled = false;
 
-            Close();
+            int height = Size.Height;
+            int width = PictureWidth > Size.Width ? PictureWidth : Size.Width;
+            Size = new Size(width, Size.Height + PictureHeight);
+            Graphics g = CreateGraphics();
+            var bitmap = new Bitmap("Final.bmp");
+            g.DrawImage(bitmap, 0, height);
+
+            btnStart.Enabled = false;
         }
     }
 }
