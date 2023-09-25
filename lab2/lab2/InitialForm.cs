@@ -196,8 +196,14 @@ namespace lab2
 
             ProcessKClusters();
 
+            int height = Size.Height;
+            int width = PictureWidth > Size.Width ? PictureWidth : Size.Width;
+            Size = new Size(width, Size.Height + PictureHeight);
+            Graphics g = CreateGraphics();
+            var bitmap = new Bitmap("Final.bmp");
+            g.DrawImage(bitmap, 0, height);
+
             btnStart.Enabled = false;
-            Close();
         }
 
         private void sbDotsNum_Scroll(object sender, ScrollEventArgs e)
