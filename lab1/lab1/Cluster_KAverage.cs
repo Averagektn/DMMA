@@ -17,10 +17,14 @@ namespace lab1
             var bestCenter = new Point((int)Dots.Average(x => x.TopLeft.X), (int)Dots.Average(x => x.TopLeft.Y));
             var minDifferent = double.MaxValue;
             var minDifferentPoint = new Point();
+
             foreach (var centerCandidate in Dots)
             {
                 var different = GetDotsDistance(bestCenter, centerCandidate.TopLeft);
-                if (!(different < minDifferent)) continue;
+                if (!(different < minDifferent))
+                {
+                    continue;
+                }
                 minDifferent = different;
                 minDifferentPoint = centerCandidate.TopLeft;
             }

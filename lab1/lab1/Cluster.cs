@@ -52,8 +52,8 @@
         /// <param name="g"><see cref="Graphics"/> to draw on</param>
         public void DrawCenter(Graphics g)
         {
-            g.DrawEllipse(Pens.Coral, Center.X, Center.Y, WIDTH, HEIGHT);
-            g.FillEllipse(new SolidBrush(Color.Coral), Center.X, Center.Y, WIDTH, HEIGHT);
+            g.DrawEllipse(Pens.Black, Center.X, Center.Y, WIDTH, HEIGHT);
+            g.FillEllipse(new SolidBrush(Color.Black), Center.X, Center.Y, WIDTH, HEIGHT);
         }
     }
 }

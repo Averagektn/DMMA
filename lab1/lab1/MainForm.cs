@@ -108,7 +108,7 @@ namespace lab1
             foreach (var cluster in _clusters)
             {
                 cluster.DrawDots(_graphics!);
-                cluster.DrawCenter(_graphics!);
+                //cluster.DrawCenter(_graphics!);
             }
             _bitmap?.Save(filename + ".bmp");
             _graphics?.Clear(Color.White);
