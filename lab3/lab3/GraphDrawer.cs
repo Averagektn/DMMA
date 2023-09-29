@@ -3,8 +3,8 @@
     internal class GraphDrawer
     {
         public void Draw() 
-        { 
-        
+        {
+
         }
     }
 }

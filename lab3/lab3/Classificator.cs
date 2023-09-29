@@ -62,7 +62,5 @@
             _SD_1 = Math.Sqrt(numerator_1 / PointsNum);
             _SD_2 = Math.Sqrt(numerator_2 / PointsNum);
         }
-
-        //private void Find
     }
 }
