@@ -4,7 +4,7 @@ namespace lab3
 {
     public sealed class GraphDrawer
     {
-        private Chart Chart { get; }
+        private readonly Chart Chart;
 
         private const int X = 0;
         private const int Y = 1;
