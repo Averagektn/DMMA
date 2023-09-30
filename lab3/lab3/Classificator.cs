@@ -2,26 +2,43 @@
 {
     public sealed class Classificator
     {
-        public int PointsNum { get; }
-        public double Probability_1 { get; }
-        public double Probability_2 { get; }
-        public int ChartWidth { get; }
-        public double[] Density_1 { get; }
-        public double[] Density_2 { get; }
+        public int CrossingX { get; private set; }
+        public double MaxY 
+        { 
+            get
+            {
+                var max_1 = Density_1.Max();
+                var max_2 = Density_2.Max();
+
+                return max_1 > max_2 ? max_1 : max_2;
+            }
+        }
+
+        public readonly double[] Density_1;
+        public readonly double[] Density_2;
+
+        public readonly int PointsNum;
+
+        public readonly int ChartWidth;
+
+        public readonly double Probability_1;
+        public readonly double Probability_2;
 
         private readonly Random _random = new();
 
         private Range _range_1;
         private Range _range_2;
 
-        private int[] _sequence_1;
-        private int[] _sequence_2;
-
         private double _MathExp_1;
         private double _MathExp_2;
 
         private double _StandartDeviation_1;
         private double _StandartDeviation_2;
+
+        private readonly int[] _sequence_1;
+        private readonly int[] _sequence_2;
+
+        private const double CMP_DIFF = 0.00002;
 
         public Classificator(int sequenceLength, double probability, int chartWidth, Range range_1, Range range_2) 
         {
@@ -77,7 +94,7 @@
         private void Count_DistributionDensity()
         {
             Count_MathExpectation();
-            Count_StandardDeviation();
+            Count_StandardDeviation(); 
 
             for (int x = 0; x < ChartWidth; x++)
             {
@@ -88,6 +105,11 @@
                 Density_2[x] = Probability_2 *
                     Math.Exp(-0.5 * Math.Pow((x - _MathExp_2) / _StandartDeviation_2, 2)) /
                     _StandartDeviation_2 * Math.Sqrt(2 * Math.PI);
+
+                if (Math.Abs(Density_1[x] - Density_2[x]) <= CMP_DIFF)
+                {
+                    CrossingX = x;
+                }
             }
         }
 
@@ -103,5 +125,6 @@
             LeftBorder = leftBorder;
             RightBorder = rightBorder;
         }
+
     }
 }

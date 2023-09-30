@@ -34,9 +34,9 @@
             // 
             // Chart
             // 
-            Chart.Location = new Point(-3, -4);
+            Chart.Location = new Point(-14, -4);
             Chart.Name = "Chart";
-            Chart.Size = new Size(1200, 570);
+            Chart.Size = new Size(1000, 590);
             Chart.TabIndex = 0;
             // 
             // MainForm
