@@ -28,33 +28,22 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
             Chart = new System.Windows.Forms.DataVisualization.Charting.Chart();
             ((System.ComponentModel.ISupportInitialize)Chart).BeginInit();
             SuspendLayout();
             // 
             // Chart
             // 
-            chartArea1.Name = "ChartArea1";
-            Chart.ChartAreas.Add(chartArea1);
-            legend1.Name = "Legend1";
-            Chart.Legends.Add(legend1);
             Chart.Location = new Point(-3, -4);
             Chart.Name = "Chart";
-            series1.ChartArea = "ChartArea1";
-            series1.Legend = "Legend1";
-            series1.Name = "Series1";
-            Chart.Series.Add(series1);
-            Chart.Size = new Size(800, 400);
+            Chart.Size = new Size(1200, 570);
             Chart.TabIndex = 0;
             // 
             // MainForm
             // 
             AutoScaleDimensions = new SizeF(8F, 19F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(1184, 561);
             Controls.Add(Chart);
             Name = "MainForm";
             Text = "Lab 3";
