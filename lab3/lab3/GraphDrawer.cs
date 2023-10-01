@@ -20,6 +20,9 @@ namespace lab3
 
             Chart = chart;
             Chart.Dock = DockStyle.Left;
+            Chart.ChartAreas.Clear();
+            Chart.Series.Clear();
+            Chart.Legends.Clear();
             Chart.ChartAreas.Add(new ChartArea(CHART_AREA_NAME));
         }
 
@@ -36,8 +39,8 @@ namespace lab3
                 seriesOfPoints.Points.AddXY(x, points[x]);
             }
 
-            Chart.ChartAreas[^1].Axes[X].Enabled = AxisEnabled.False;
-            Chart.ChartAreas[^1].Axes[Y].Enabled = AxisEnabled.False;
+            //Chart.ChartAreas[^1].Axes[X].Enabled = AxisEnabled.False;
+            //Chart.ChartAreas[^1].Axes[Y].Enabled = AxisEnabled.False;
             Chart.Legends.Add(name);
 
             Chart.Series.Add(seriesOfPoints);
@@ -54,8 +57,8 @@ namespace lab3
             seriesOfPoints.Points.AddXY(crossingX, 0);
             seriesOfPoints.Points.AddXY(crossingX, maxY);
             
-            Chart.ChartAreas[^1].Axes[X].Enabled = AxisEnabled.False;
-            Chart.ChartAreas[^1].Axes[Y].Enabled = AxisEnabled.False;
+            //Chart.ChartAreas[^1].Axes[X].Enabled = AxisEnabled.False;
+            //Chart.ChartAreas[^1].Axes[Y].Enabled = AxisEnabled.False;
             Chart.Legends.Add(name);
 
             Chart.Series.Add(seriesOfPoints);

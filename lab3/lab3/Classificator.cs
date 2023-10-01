@@ -100,11 +100,11 @@
             {
                 Density_1[x] = Probability_1 * 
                     Math.Exp(-0.5 * Math.Pow((x - _MathExp_1) / _StandartDeviation_1, 2)) / 
-                    _StandartDeviation_1 * Math.Sqrt(2 * Math.PI);
+                    (_StandartDeviation_1 * Math.Sqrt(2 * Math.PI));
 
                 Density_2[x] = Probability_2 *
                     Math.Exp(-0.5 * Math.Pow((x - _MathExp_2) / _StandartDeviation_2, 2)) /
-                    _StandartDeviation_2 * Math.Sqrt(2 * Math.PI);
+                    (_StandartDeviation_2 * Math.Sqrt(2 * Math.PI));
 
                 if (Math.Abs(Density_1[x] - Density_2[x]) <= CMP_DIFF)
                 {
