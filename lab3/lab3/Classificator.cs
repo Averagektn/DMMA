@@ -1,8 +1,20 @@
 ﻿namespace lab3
 {
+    /// <summary>
+    ///     Generates points from two samples with given ranges<br/> 
+    ///     Counts their density<br/>
+    ///     Finds their crossing coordinate<br/>
+    /// </summary>
     public sealed class Classificator
     {
-        public int CrossingX { get; private set; }
+        /// <summary>
+        ///     X coordinate of graphs cross
+        /// </summary>
+        public int CrossX { get; private set; }
+
+        /// <summary>
+        ///     Maximum value of both densities
+        /// </summary>
         public double MaxY 
         { 
             get
@@ -14,30 +26,60 @@
             }
         }
 
+        /// <summary>
+        ///     Density of sample
+        /// </summary>
         public readonly double[] Density_1;
         public readonly double[] Density_2;
 
+        /// <summary>
+        ///     Number of points to be generated
+        /// </summary>
         public readonly int PointsNum;
 
+        /// <summary>
+        ///     Width of provided chart, number of X coordinates
+        /// </summary>
         public readonly int ChartWidth;
 
+        /// <summary>
+        ///     Probability of value to be in given sample
+        /// </summary>
         public readonly double Probability_1;
         public readonly double Probability_2;
 
+        /// <summary>
+        ///     Sample generation
+        /// </summary>
         private readonly Random _random = new();
 
+        /// <summary>
+        ///     Ranges of possible sample values
+        /// </summary>
         private Range _range_1;
         private Range _range_2;
 
+        /// <summary>
+        ///     Mathematical expectation
+        /// </summary>
         private double _MathExp_1;
         private double _MathExp_2;
 
+        /// <summary>
+        ///     Stndart deviation
+        /// </summary>
         private double _StandartDeviation_1;
         private double _StandartDeviation_2;
 
+        /// <summary>
+        ///     Sequence of numbers, sample
+        /// </summary>
         private readonly int[] _sequence_1;
         private readonly int[] _sequence_2;
 
+        /// <summary>
+        ///     Makes approximately equal numbers equal
+        /// </summary>
         private const double CMP_DIFF = 0.00002;
 
         public Classificator(int sequenceLength, double probability, int chartWidth, Range range_1, Range range_2) 
@@ -61,6 +103,9 @@
             Count_DistributionDensity();
         }
 
+        /// <summary>
+        ///     Sample generation
+        /// </summary>
         private void GenerateSequence()
         {
             for (int i = 0; i < PointsNum; i++)
@@ -70,12 +115,18 @@
             }
         }
 
+        /// <summary>
+        ///     Mathematical expectation of samples
+        /// </summary>
         private void Count_MathExpectation()
         {
             _MathExp_1 = _sequence_1.Sum() / PointsNum;
             _MathExp_2 = _sequence_2.Sum() / PointsNum;
         }
 
+        /// <summary>
+        ///     Standart deviation of samples
+        /// </summary>
         private void Count_StandardDeviation()
         {
             double numerator_1 = 0;
@@ -91,6 +142,9 @@
             _StandartDeviation_2 = Math.Sqrt(numerator_2 / PointsNum);
         }
 
+        /// <summary>
+        ///     Distribution density of samples
+        /// </summary>
         private void Count_DistributionDensity()
         {
             Count_MathExpectation();
@@ -108,16 +162,26 @@
 
                 if (Math.Abs(Density_1[x] - Density_2[x]) <= CMP_DIFF)
                 {
-                    CrossingX = x;
+                    CrossX = x;
                 }
             }
         }
 
     }
 
+    /// <summary>
+    ///     Number range
+    /// </summary>
     public struct Range
     {
+        /// <summary>
+        ///     Minimal value
+        /// </summary>
         public int LeftBorder;
+
+        /// <summary>
+        ///     Maximal value
+        /// </summary>
         public int RightBorder;
 
         public Range(int leftBorder, int rightBorder) 
