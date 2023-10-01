@@ -1,79 +1,112 @@
 ﻿namespace lab4
 {
-    public class KAverage
+    public static class KAverage
     {
-        public int[] Cores;
+        private static Random Random = new();
+        private static List<ClassObject> Objects = new();
+        private static readonly List<Class> Classes = new();
+        private static readonly List<List<int>> PrevCenters = new();
 
-        public int[][] Elements;
+        private static int _classesNum;
+        private static int _objectsNum;
+        private static int _distinctionsNum;
 
-
-        public KAverage()
+        public static List<Class> Get_DividedClasses(int classesNum, int objectsNum, int distinctionsNum)
         {
+            bool isCounting = true;
 
-        }
+            _classesNum = classesNum;
+            _objectsNum = objectsNum;
+            _distinctionsNum = distinctionsNum;
 
+            Generate_Classes();
+            Generate_Objects();
 
-        public int[][] Get_DividedClasses()
-        {
-            throw new NotImplementedException();
-        }
-
-        public int[][] Get_BestClusterCore()
-        {
-/*            var bestCenter = new Point((int)Dots.Average(x => x.TopLeft.X), (int)Dots.Average(x => x.TopLeft.Y));
-            var minDifferent = double.MaxValue;
-            var minDifferentPoint = new Point();
-
-            foreach (var centerCandidate in Dots)
+            while (isCounting)
             {
-                var different = GetDotsDistance(bestCenter, centerCandidate.TopLeft);
-                if (!(different < minDifferent))
+                isCounting = false;
+
+                Update_PrevCenters();
+
+                Update_Centers();
+
+                for (int i = 0; i < Objects.Count; i++)
                 {
-                    continue;
+                    Objects[i].FindCluster(Classes);
                 }
-                minDifferent = different;
-                minDifferentPoint = centerCandidate.TopLeft;
+
+                for (int i = 0; i < Classes.Count; i++)
+                {
+                    if (!Is_SameObject(Classes[i].Center, PrevCenters[i]))
+                    {
+                        isCounting = true;
+                    }
+                }
             }
 
-            return minDifferentPoint;*/
-            throw new NotImplementedException();
+            return Classes;
         }
 
-        protected static double Get_ElementsDistance(int firstElement, int secondElement)
-        {/*
-            var xDifferent = firstDot.X - secondDot.X;
-            var yDifferent = firstDot.Y - secondDot.Y;
-            return Math.Sqrt(xDifferent * xDifferent + yDifferent * yDifferent);*/
-            throw new NotImplementedException();
-        }
-
-        public static void FindCluster()
+        private static void Update_Centers()
         {
-            /*            int ind = 0;
-                        int minDistance = CountDistance(TopLeft, clusters[ind].Center);
-                        for (int i = 1; i < clusters.Count; i++)
-                        {
-                            int currentDistance = CountDistance(TopLeft, clusters[i].Center);
-                            if (minDistance > currentDistance)
-                            {
-                                minDistance = currentDistance;
-                                ind = i;
-                            }
-                        }
-
-                        Pen.Color = clusters[ind].Color;
-
-                        clusters[ind].Dots.Add(this);*/
-            throw new NotImplementedException();
+            for (int i = 0; i < Classes.Count; i++)
+            {
+                Classes[i].Center = Classes[i].Get_BestClassCenter();
+                Classes[i].Objects.Clear();
+            }
         }
 
-        private static int CountDistance(Point p1, Point p2)
+        private static void Update_PrevCenters()
         {
-            /*            var a = Math.Pow((p1.X - p2.X + WIDTH / 2), 2);
-                        var b = Math.Pow((p1.Y - p2.Y + HEIGHT / 2), 2);
-                        int res = (int)Math.Sqrt(a + b);
-                        return res;*/
-            throw new NotImplementedException();
+            PrevCenters.Clear();
+            for (int i = 0; i < _classesNum; i++)
+            {
+                PrevCenters.Add(Classes[i].Center);
+            }
         }
+
+        private static void Generate_Classes()
+        {
+            for (int i = 0; i < _classesNum; i++)
+            {
+                var center = new List<int>();
+                for (int j = 0; j < _distinctionsNum; j++)
+                {
+                    center.Add(Random.Next());
+                }
+                Classes.Add(new Class(center));
+            }
+        }
+
+        private static void Generate_Objects()
+        {
+            for (int i = 0; i < _objectsNum; i++)
+            {
+                var obj = new List<int>();
+
+                for (int j = 0; j < _distinctionsNum; j++)
+                {
+                    obj.Add(Random.Next());
+                }
+
+                Objects.Add(new ClassObject(obj));
+            }
+        }
+
+        private static bool Is_SameObject(List<int> firstObject, List<int> secondObject)
+        {
+            bool result = true;
+
+            for (int i = 0; i < firstObject.Count && result; i++)
+            {
+                if (Math.Abs(firstObject[i] - secondObject[i]) > 5)
+                {
+                    result = false;
+                }
+            }
+
+            return result;
+        }
+
     }
 }

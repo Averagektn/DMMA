@@ -3,8 +3,8 @@
     public sealed class Perceptron
     {
         // к образу добавит в конец 1
-        private int[][] weightMatrices;
-        private int[][] objects;
+        private int[,] weightMatrices;
+        private int[,] objects;
 
         public Perceptron(int classesNum, int distinclionsNum)
         {
