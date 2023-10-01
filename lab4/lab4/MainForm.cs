@@ -1,5 +1,3 @@
-using System.Web.Helpers;
-
 namespace lab4
 {
     public partial class MainForm : Form
@@ -7,7 +5,6 @@ namespace lab4
         public MainForm()
         {
             InitializeComponent();
-            Chart c = new();
         }
     }
 }

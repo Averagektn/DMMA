@@ -20,8 +20,12 @@ The initial data is the number of images to be divided into classes. It is sugge
 The goal and result of the algorithm is to divide objects into classes as compactly as possible based on a random choice, defining the core of each class.
 ---
 ## Lab №3
+* Разделение объектов на два класса при вероятностном подходе. Вычислить вероятность ложной тревоги, вероятность пропуска обнаружения ошибки, вероятность суммарной ошибки классификации.
+* Divide objects into two classes using a probabilistic approach. Calculate the probability of false alarm, probability of missing error detection, probability of total classification error.
 ---
 ## Lab №4
+* Классификация объектов на N классов методом персептрона. Найти N решающих функций. После того, как получено N решающих функций, предъявляются объекты тестовой выборки, которые необходимо классифицировать, отнеся к одному из классов. Тестовый объект подставляется в каждую из решающих функций и относится к тому из классов, где было получено максимальное значение. Количество классов, обучающих объектов и их признаков может быть произвольным.
+* Classification of objects into N classes by the perseptron method. Find N decision functions. After N solving functions are obtained, test sample objects are presented, which are to be classified by assigning them to one of the classes. The test object is substituted into each of the solving functions and assigned to the one of the classes where the maximum value was obtained. The number of classes, training objects and their features can be arbitrary.
 ---
 ## Lab №5
 ---
