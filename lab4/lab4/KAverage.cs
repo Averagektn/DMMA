@@ -2,15 +2,53 @@
 {
     public static class KAverage
     {
-        private static Random Random = new();
-        private static List<ClassObject> Objects = new();
+        /// <summary>
+        /// 
+        /// </summary>
         private static readonly List<Class> Classes = new();
+
+        /// <summary>
+        /// 
+        /// </summary>
         private static readonly List<List<int>> PrevCenters = new();
+
+        /// <summary>
+        /// 
+        /// </summary>
+        private static readonly Random Random = new();
+
+        /// <summary>
+        /// 
+        /// </summary>
+        private static readonly List<ClassObject> Objects = new();
+
+        /// <summary>
+        /// 
+        /// </summary>
         private const int MAX_DIST = 10;
+
+        /// <summary>
+        /// 
+        /// </summary>
         private static int _classesNum;
+
+        /// <summary>
+        /// 
+        /// </summary>
         private static int _objectsNum;
+
+        /// <summary>
+        /// 
+        /// </summary>
         private static int _distinctionsNum;
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="classesNum"></param>
+        /// <param name="objectsNum"></param>
+        /// <param name="distinctionsNum"></param>
+        /// <returns></returns>
         public static List<Class> Get_DividedClasses(int classesNum, int objectsNum, int distinctionsNum)
         {
             bool isCounting = true;
@@ -52,6 +90,9 @@
             return Classes;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         private static void Update_Centers()
         {
             for (int i = 0; i < Classes.Count; i++)
@@ -61,6 +102,9 @@
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         private static void Update_PrevCenters()
         {
             PrevCenters.Clear();
@@ -70,6 +114,9 @@
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         private static void Generate_Classes()
         {
             for (int i = 0; i < _classesNum; i++)
@@ -83,6 +130,9 @@
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         private static void Generate_Objects()
         {
             for (int i = 0; i < _objectsNum; i++)
@@ -98,6 +148,12 @@
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="firstObject"></param>
+        /// <param name="secondObject"></param>
+        /// <returns></returns>
         private static bool Is_SameObject(List<int> firstObject, List<int> secondObject)
         {
             bool result = true;

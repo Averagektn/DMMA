@@ -1,14 +1,24 @@
 ﻿namespace lab4
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public sealed class ClassObject
     {
-        public List<int> Distinctions;
+        /// <summary>
+        /// 
+        /// </summary>
+        public List<int> Distinctions { get; set; }
 
         public ClassObject(List<int> distinctions)
         {
             Distinctions = distinctions;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="classes"></param>
         public void FindCluster(List<Class> classes)
         {
             int ind = 0;
@@ -27,6 +37,12 @@
             classes[ind].Objects.Add(this);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="firstObject"></param>
+        /// <param name="secondObject"></param>
+        /// <returns></returns>
         public static int Get_Distance(List<int> firstObject, List<int> secondObject)
         {
             var diff = new List<int>(firstObject.Count);   
