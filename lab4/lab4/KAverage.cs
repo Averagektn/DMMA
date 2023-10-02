@@ -6,7 +6,7 @@
         private static List<ClassObject> Objects = new();
         private static readonly List<Class> Classes = new();
         private static readonly List<List<int>> PrevCenters = new();
-
+        private const int MAX_DIST = 10;
         private static int _classesNum;
         private static int _objectsNum;
         private static int _distinctionsNum;
@@ -21,6 +21,11 @@
 
             Generate_Classes();
             Generate_Objects();
+
+            for (int i = 0; i < Objects.Count; i++)
+            {
+                Objects[i].FindCluster(Classes);
+            }
 
             while (isCounting)
             {
@@ -51,7 +56,7 @@
         {
             for (int i = 0; i < Classes.Count; i++)
             {
-                Classes[i].Center = Classes[i].Get_BestClassCenter();
+                Classes[i].Center = Classes[i].Get_BestClassCenter(_distinctionsNum);
                 Classes[i].Objects.Clear();
             }
         }
@@ -72,7 +77,7 @@
                 var center = new List<int>();
                 for (int j = 0; j < _distinctionsNum; j++)
                 {
-                    center.Add(Random.Next());
+                    center.Add(Random.Next(MAX_DIST));
                 }
                 Classes.Add(new Class(center));
             }
@@ -86,7 +91,7 @@
 
                 for (int j = 0; j < _distinctionsNum; j++)
                 {
-                    obj.Add(Random.Next());
+                    obj.Add(Random.Next(MAX_DIST));
                 }
 
                 Objects.Add(new ClassObject(obj));

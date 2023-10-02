@@ -11,15 +11,13 @@
             Objects = new();
         }
 
-        public List<int> Get_BestClassCenter()
+        public List<int> Get_BestClassCenter(int distinctionsNum)
         {
             var bestCenter = new List<int>();
-            for (int i = 0; i < Objects.Count; i++)
+
+            for (int j = 0; j < distinctionsNum; j++)
             {
-                for (int j = 0; j < Objects[i].Distinctions.Count; j++)
-                {
-                    bestCenter.Add((int)Objects.Average(obj => obj.Distinctions[j]));
-                }
+                bestCenter.Add((int)Objects.Average(obj => obj.Distinctions[j]));
             }
 
             var minDifferent = double.MaxValue;

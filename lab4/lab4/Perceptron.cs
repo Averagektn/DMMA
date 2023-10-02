@@ -2,13 +2,19 @@
 {
     public sealed class Perceptron
     {
-        // к образу добавит в конец 1
-        private int[,] weightMatrices;
-        private int[,] objects;
+        // к образу добавить в конец 1
+        private List<List<int>> WeightMatrices;
+        private List<Class> Classes;
 
-        public Perceptron(int classesNum, int distinclionsNum)
+        public Perceptron(int classesNum, int objectsNum, int distinctionsNum)
         {
-
+            WeightMatrices = new();
+            for (int i = 0; i < classesNum; i++)
+            {
+                WeightMatrices.Add(new List<int>());
+            }
+            Classes = KAverage.Get_DividedClasses(classesNum, objectsNum, distinctionsNum);
+            Console.WriteLine();
         }
 
         public int[][] Get_SepartingFunctions()

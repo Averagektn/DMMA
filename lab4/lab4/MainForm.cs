@@ -5,6 +5,8 @@ namespace lab4
         public MainForm()
         {
             InitializeComponent();
+
+            var perceptron = new Perceptron(5, 10, 3);
         }
     }
 }

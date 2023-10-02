@@ -33,7 +33,7 @@
 
             for (int i = 0; i < firstObject.Count; i++)
             {
-                diff[i] = firstObject[i] - secondObject[i];
+                diff.Add(firstObject[i] - secondObject[i]);
                 diff[i] *= diff[i];
             }
 
