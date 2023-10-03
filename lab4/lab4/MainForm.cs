@@ -2,18 +2,25 @@ namespace lab4
 {
     public partial class MainForm : Form
     {
-        //private Perceptron Perceptron;
-
+        /// <summary>
+        /// 
+        /// </summary>
         private int ClassesNum
         {
             get => tbClassesNum.Value;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         private int ObjectsNum
         {
             get => tbObjectsNum.Value;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         private int DistinctionsNum
         {
             get => tbDistinctionsNum.Value;

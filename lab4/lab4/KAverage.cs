@@ -25,7 +25,7 @@
         /// <summary>
         /// 
         /// </summary>
-        private const int MAX_DIST = 10;
+        private const int MAX_DIST = 100;
 
         /// <summary>
         /// 

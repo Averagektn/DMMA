@@ -21,7 +21,24 @@ namespace lab4
 
             WeightMatrices = new();
 
-            Classes = KAverage.Get_DividedClasses(classesNum, objectsNum, distinctionsNum);
+            //Classes = KAverage.Get_DividedClasses(classesNum, objectsNum, distinctionsNum);
+            Classes = new List<Class>();
+
+            var center_1 = new List<int> { 0, 0 };
+            var class_1 = new Class(center_1);
+            Classes.Add(class_1);
+
+            var center_2 = new List<int> { 1, 1 };
+            var class_2 = new Class(center_2);
+            Classes.Add(class_2);
+
+            var center_3 = new List<int> { -1, 1 };
+            var class_3 = new Class(center_3);
+            Classes.Add(class_3);
+
+            Classes[0].Objects.Add(new ClassObject(center_1));
+            Classes[1].Objects.Add(new ClassObject(center_2));
+            Classes[2].Objects.Add(new ClassObject(center_3));
 
             Extend_Objects();
             Create_WeightMatrices();
@@ -32,7 +49,7 @@ namespace lab4
             bool isCounting = true;
             int objInd = 0;
 
-            while (isCounting) 
+            while (isCounting)
             {
                 isCounting = Update_WeightMatrices(objInd);
                 objInd++;
@@ -50,21 +67,47 @@ namespace lab4
 
             for (int i = 1; i < _weightMatricesNum; i++)
             {
-                
-                if (vector_D[(i + currObjInd) % _objectsNum] >= vector_D[currObjInd])
+                if (vector_D[(i + currObjInd) % _classesNum] >= vector_D[Get_ClassNum(currObjInd)])
                 {
                     isError = true;
-                    WeightMatrices[(i + currObjInd) % _objectsNum] = 
-                        Subtract_Matrices(WeightMatrices[(i + currObjInd) % _objectsNum], currObj);
-                }   
+                    WeightMatrices[(i + currObjInd) % _classesNum] =
+                        Subtract_Matrices(WeightMatrices[(i + currObjInd) % _classesNum], currObj);
+                }
             }
 
             if (isError)
             {
-                WeightMatrices[currObjInd] = Add_Matrices(WeightMatrices[currObjInd], currObj);
+                WeightMatrices[Get_ClassNum(currObjInd)] = 
+                    Add_Matrices(WeightMatrices[Get_ClassNum(currObjInd)], currObj);
             }
 
             return isError;
+        }
+
+        private int Get_ObjInd(int objPos)
+        {
+            int ind = 0;
+
+            while (ind < _classesNum && objPos - Classes[ind].Objects.Count >= 0)
+            {
+                objPos -= Classes[ind].Objects.Count;
+                ind++;
+            }
+
+            return objPos;
+        }
+
+        private int Get_ClassNum(int objNum)
+        {
+            int res = 0;
+
+            while (res < _classesNum && objNum - Classes[res].Objects.Count >= 0)
+            {
+                objNum -= Classes[res].Objects.Count;
+                res++;
+            }
+
+            return res;
         }
 
         private List<int> Add_Matrices(List<int> matrix_1, List<int> matrix_2)
@@ -103,31 +146,6 @@ namespace lab4
             for (int i = 0; i < _classesNum; i++)
             {
                 res.Add(Multiply_Vectors(WeightMatrices[i], obj));
-            }
-
-            return res;
-        }
-
-        private int Get_ObjInd(int objPos)
-        {
-            int ind = 0;
-
-            while (objPos - Classes[ind].Objects.Count > 0 || Classes[ind].Objects.Count == 0)
-            {
-                ind++;
-                objPos -= Classes[ind].Objects.Count;
-            }
-
-            return objPos;
-        }
-
-        private int Get_ClassNum(int objNum)
-        {
-            int res = 0;
-
-            while (objNum - Classes[res].Objects.Count > 0 || Classes[res].Objects.Count == 0) 
-            {
-                res++;
             }
 
             return res;
@@ -201,9 +219,19 @@ namespace lab4
                 sb.Append($"Function " + (i + 1) + ": ");
                 for (int j = 0; j < _distinctionsNum - 1; j++)
                 {
-                    sb.Append(separatingFunctions[i][j] + "*x" + (j + 1) + " ");
+                    sb.Append(Math.Abs(separatingFunctions[i][j]) + "*x" + (j + 1));
+                    if (separatingFunctions[i][j + 1] >= 0)
+                    {
+                        sb.Append(" + ");
+                    }
+                    else
+                    {
+                        sb.Append(" - ");
+                    }
+
                 }
-                sb.AppendLine(separatingFunctions[i][^1].ToString());
+
+                sb.AppendLine(Math.Abs(separatingFunctions[i][^1]).ToString());
             }
 
             return sb.ToString();

@@ -215,7 +215,9 @@
             Controls.Add(lblDistinctionsNum_Text);
             Controls.Add(lblClassesNum_Text);
             Font = new Font("Segoe UI", 14F, FontStyle.Regular, GraphicsUnit.Point);
+            FormBorderStyle = FormBorderStyle.FixedSingle;
             Margin = new Padding(4);
+            MaximizeBox = false;
             Name = "MainForm";
             Text = "Lab 4";
             ((System.ComponentModel.ISupportInitialize)tbClassesNum).EndInit();
