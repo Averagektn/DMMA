@@ -1,20 +1,26 @@
 ﻿namespace lab4
 {
     /// <summary>
-    /// 
+    ///     Specifies class as center and container of objects around it
     /// </summary>
     public sealed class Class
     {
         /// <summary>
-        /// 
+        ///     Central point of class
         /// </summary>
         public List<int> Center { get; set; }
 
         /// <summary>
-        /// 
+        ///     Objects of the class
         /// </summary>
         public List<ClassObject> Objects { get; set; }
 
+        /// <summary>
+        ///     Creates new class by center and empty <see cref="Objects"/>
+        /// </summary>
+        /// <param name="center">
+        ///     Central point specified class
+        /// </param>
         public Class(List<int> center) 
         { 
             Center = center;
@@ -22,10 +28,14 @@
         }
 
         /// <summary>
-        /// 
+        ///     Counts new class <see cref="Center"/><br/> 
         /// </summary>
-        /// <param name="distinctionsNum"></param>
-        /// <returns></returns>
+        /// <param name="distinctionsNum">
+        ///     Number of distinctions to iterate through
+        /// </param>
+        /// <returns>
+        ///     New <see cref="Center"/>
+        /// </returns>
         public List<int> Get_BestClassCenter(int distinctionsNum)
         {
             var bestCenter = new List<int>();
