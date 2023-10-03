@@ -32,7 +32,7 @@ namespace lab4
         {
             var perceptron = new Perceptron(ClassesNum, ObjectsNum, DistinctionsNum);
             tbGeneratedClasses.Text = perceptron.Get_Classes_String();
-            tbSeparatingFunctions.Text = perceptron.Get_SeparatingFunctions_String();
+            //tbSeparatingFunctions.Text = perceptron.Get_SeparatingFunctions_String();
 
             btnGenerateSeparatingFunctions.Enabled = false;
         }
