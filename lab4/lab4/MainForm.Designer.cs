@@ -146,29 +146,29 @@
             tbClassesNum.Name = "tbClassesNum";
             tbClassesNum.Size = new Size(208, 45);
             tbClassesNum.TabIndex = 11;
-            tbClassesNum.Value = 1;
+            tbClassesNum.Value = 3;
             tbClassesNum.Scroll += On_tbClassesNum_Scroll;
             // 
             // tbObjectsNum
             // 
             tbObjectsNum.Location = new Point(16, 231);
             tbObjectsNum.Maximum = 100;
-            tbObjectsNum.Minimum = 10;
+            tbObjectsNum.Minimum = 1;
             tbObjectsNum.Name = "tbObjectsNum";
             tbObjectsNum.Size = new Size(208, 45);
             tbObjectsNum.TabIndex = 12;
-            tbObjectsNum.Value = 10;
+            tbObjectsNum.Value = 3;
             tbObjectsNum.Scroll += On_tbObjectsNum_Scroll;
             // 
             // tbDistinctionsNum
             // 
             tbDistinctionsNum.LargeChange = 2;
             tbDistinctionsNum.Location = new Point(16, 366);
-            tbDistinctionsNum.Minimum = 1;
+            tbDistinctionsNum.Minimum = 2;
             tbDistinctionsNum.Name = "tbDistinctionsNum";
             tbDistinctionsNum.Size = new Size(208, 45);
             tbDistinctionsNum.TabIndex = 13;
-            tbDistinctionsNum.Value = 1;
+            tbDistinctionsNum.Value = 2;
             tbDistinctionsNum.Scroll += On_tbDistinctionsNum_Scroll;
             // 
             // lblClassesNum_Value

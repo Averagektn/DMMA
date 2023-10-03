@@ -20,10 +20,7 @@ namespace lab4
             _distinctionsNum = distinctionsNum;
 
             WeightMatrices = new();
-            for (int i = 0; i < classesNum; i++)
-            {
-                WeightMatrices.Add(new List<int>());
-            }
+
             Classes = KAverage.Get_DividedClasses(classesNum, objectsNum, distinctionsNum);
 
             Extend_Objects();
@@ -64,7 +61,7 @@ namespace lab4
 
             if (isError)
             {
-                Add_Matrices(WeightMatrices[currObjInd], currObj);
+                WeightMatrices[currObjInd] = Add_Matrices(WeightMatrices[currObjInd], currObj);
             }
 
             return isError;
@@ -115,7 +112,7 @@ namespace lab4
         {
             int ind = 0;
 
-            while (objPos - Classes[ind].Objects.Count > 0)
+            while (objPos - Classes[ind].Objects.Count > 0 || Classes[ind].Objects.Count == 0)
             {
                 ind++;
                 objPos -= Classes[ind].Objects.Count;
@@ -128,7 +125,7 @@ namespace lab4
         {
             int res = 0;
 
-            while (objNum - Classes[res].Objects.Count > 0) 
+            while (objNum - Classes[res].Objects.Count > 0 || Classes[res].Objects.Count == 0) 
             {
                 res++;
             }
@@ -202,11 +199,11 @@ namespace lab4
             for (int i = 0; i < _classesNum; i++)
             {
                 sb.Append($"Function " + (i + 1) + ": ");
-
-                for (int j = 0; j < _distinctionsNum; j++)
+                for (int j = 0; j < _distinctionsNum - 1; j++)
                 {
-                    sb.AppendLine(separatingFunctions[i][j] + "*x" + (j + 1) + " ");
+                    sb.Append(separatingFunctions[i][j] + "*x" + (j + 1) + " ");
                 }
+                sb.AppendLine(separatingFunctions[i][^1].ToString());
             }
 
             return sb.ToString();
