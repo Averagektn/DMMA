@@ -1,24 +1,36 @@
 ﻿namespace lab5
 {
     /// <summary>
-    /// 
+    ///     Generates rndomized points
     /// </summary>
     public static class PointGenerator
     {
         /// <summary>
-        /// 
+        ///     Randomizator
         /// </summary>
         private static readonly Random Random = new();
 
         /// <summary>
-        /// 
+        ///     Creates new point list
         /// </summary>
-        /// <param name="size"></param>
-        /// <param name="leftBorderX"></param>
-        /// <param name="rightBorderX"></param>
-        /// <param name="leftBorderY"></param>
-        /// <param name="rightBorderY"></param>
-        /// <returns></returns>
+        /// <param name="size">
+        ///     Size of list
+        /// </param>
+        /// <param name="leftBorderX">
+        ///     X minimal coordinate
+        /// </param>
+        /// <param name="rightBorderX">
+        ///     X maximal coordinate
+        /// </param>
+        /// <param name="leftBorderY">
+        ///     Y minimal coordinate
+        /// </param>
+        /// <param name="rightBorderY">
+        ///     Y maximal coordinate
+        /// </param>
+        /// <returns>
+        ///     Randomly generated points
+        /// </returns>
         public static List<Point> Get_NewPointList(int size, int leftBorderX, int rightBorderX, 
             int leftBorderY, int rightBorderY)
         {

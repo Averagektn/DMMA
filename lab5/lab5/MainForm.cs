@@ -1,42 +1,42 @@
 namespace lab5
 {
     /// <summary>
-    /// 
+    ///     Form to show results as visualization
     /// </summary>
     public partial class MainForm : Form
     {
         /// <summary>
-        /// 
+        ///     First class
         /// </summary>
         private readonly List<Point>? Class_1 = new();
 
         /// <summary>
-        /// 
+        ///     Second class
         /// </summary>
         private readonly List<Point>? Class_2 = new();
 
         /// <summary>
-        /// 
+        ///     Number of points to separate
         /// </summary>
         private const int POINTS_NUM = 50000;
 
         /// <summary>
-        /// 
+        ///     Point width for drawing
         /// </summary>
         private const int POINT_WIDTH = 1;
 
         /// <summary>
-        /// 
+        ///      Point height for drawing
         /// </summary>
         private const int POINT_HEIGHT = 1;
 
         /// <summary>
-        /// 
+        ///     Filename where results are saved
         /// </summary>
         private const string FILENAME_RESULT = "Result.bmp";
 
         /// <summary>
-        /// 
+        ///     Creates separating polynom, generates points and saves results as .bmp
         /// </summary>
         public MainForm()
         {
@@ -56,9 +56,11 @@ namespace lab5
         }
 
         /// <summary>
-        /// 
+        ///     Saves drawing results to .bmp file
         /// </summary>
-        /// <param name="filename"></param>
+        /// <param name="filename">
+        ///     Name of file to save
+        /// </param>
         private void Save_ToBMP(string filename)
         {
             var bmp = new Bitmap(Size.Width, Size.Height, System.Drawing.Imaging.PixelFormat.Format32bppPArgb);
@@ -72,11 +74,17 @@ namespace lab5
         }
 
         /// <summary>
-        /// 
+        ///     Draws the entire class with specified color
         /// </summary>
-        /// <param name="objects"></param>
-        /// <param name="color"></param>
-        /// <param name="graphics"></param>
+        /// <param name="objects">
+        ///     Points to draw
+        /// </param>
+        /// <param name="color">
+        ///     Color to draw with
+        /// </param>
+        /// <param name="graphics">
+        ///     Element to draw on
+        /// </param>
         private void Draw_Class(List<Point> objects, Color color, Graphics graphics)
         {
             var brush = new SolidBrush(color);
@@ -92,7 +100,7 @@ namespace lab5
         }
 
         /// <summary>
-        /// 
+        ///     Paints results from .bmp file
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
