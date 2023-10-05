@@ -37,10 +37,11 @@
             ClientSize = new Size(1184, 561);
             Font = new Font("Segoe UI", 14F, FontStyle.Regular, GraphicsUnit.Point);
             FormBorderStyle = FormBorderStyle.FixedSingle;
-            Margin = new Padding(4, 4, 4, 4);
+            Margin = new Padding(4);
             MaximizeBox = false;
             Name = "MainForm";
             Text = "Lab 5";
+            Paint += MainForm_Paint;
             ResumeLayout(false);
         }
 
