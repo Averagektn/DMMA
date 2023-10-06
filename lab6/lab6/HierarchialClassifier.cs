@@ -52,12 +52,14 @@ namespace lab6
                 {
                     DistanceTable[i][min.Column] = DistanceTable[i][min.Column] < DistanceTable[i][min.Row] ? 
                         DistanceTable[i][min.Column] : DistanceTable[i][min.Row];
+                    DistanceTable[i].Add(DistanceTable[i][min.Column]);
+                    DistanceTable[i].RemoveAt(min.Column);
                     DistanceTable[i].RemoveAt(min.Row);
                 }
 
-                if (min.Column > counter || min.Row > counter)
+                if (min.Column >= counter || min.Row >= counter)
                 {
-                    if (min.Column > counter && min.Row > counter)
+                    if (min.Column >= counter && min.Row >= counter)
                     {
                         tree.Add(new(tree[min.Column], tree[min.Row], min.Value));
                     }
@@ -88,7 +90,7 @@ namespace lab6
             return tree;
         }
 
-        private TableCell Get_MinDistIndexes(Table DistanceTable)
+        private TableCell Get_MinDistIndexes()
         {
             int minRow = 0;
             int minCol = 0;
@@ -98,7 +100,7 @@ namespace lab6
             {
                 for (int j = 0; j < DistanceTable[i].Count; j++)
                 {
-                    if (DistanceTable[i][j] < minHeight && DistanceTable[i][j] != 0)
+                    if (DistanceTable[i][j] <= minHeight && DistanceTable[i][j] != 0 && i != j)
                     {
                         minRow = i;
                         minCol = j;
