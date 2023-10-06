@@ -1,3 +1,5 @@
+using System.Text;
+
 namespace lab5
 {
     /// <summary>
@@ -53,6 +55,30 @@ namespace lab5
             Class_2 = PolynomicSeparator.Class_2;
 
             Save_ToBMP(FILENAME_RESULT);
+
+            MessageBox.Show($"Separating function: {PolynomToString(polynom)}");
+        }
+
+        private static string PolynomToString(List<int> polynom)
+        {
+            var res = new StringBuilder();
+            var vars = new string[3] { "*x1", "*x2", "x1*x2" };
+
+            res.Append(polynom[0]);
+            for (int i = 1; i < polynom.Count; i++)
+            {
+                if (polynom[i] < 0)
+                {
+                    res.Append(" - " + Math.Abs(polynom[i]));
+                }
+                else
+                {
+                    res.Append(" + " + polynom[i]);
+                }
+                res.Append(vars[i - 1]);
+            }
+
+            return res.ToString();
         }
 
         /// <summary>
