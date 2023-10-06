@@ -2,6 +2,8 @@
 {
     public class Node
     {
+        public bool IsVisited = false;
+
         public Node? LeftChild;
         public Node? RightChild;
 

@@ -1,4 +1,5 @@
-﻿using Table = System.Collections.Generic.List<System.Collections.Generic.List<double>>;
+﻿using System.Diagnostics.Metrics;
+using Table = System.Collections.Generic.List<System.Collections.Generic.List<double>>;
 
 namespace lab6
 {
@@ -14,26 +15,20 @@ namespace lab6
         public HierarchialClassifier(int size, int maxVal)
         {
             _tableSize = size;
-            //DistanceTable = Create_DistanceTable(maxVal);
+            DistanceTable = Create_DistanceTable(maxVal);
+        }
+
+        public HierarchialClassifier()
+        {
+            _tableSize = 4;
             DistanceTable = Create_DistanceTable();
         }
 
         public List<Node> Get_Tree()
         {
             var tree = new List<Node>();
-            var elementInds = new List<int>();
+            var inds = Create_IndList(_tableSize);
             int counter = _tableSize;
-            var inds = new List<int>();
-
-            for (int i = 0; i < DistanceTable.Count; i++)
-            {
-                inds.Add(i);
-            }
-
-            for (int i = 0; i < _tableSize; i++)
-            {
-                elementInds.Add(i);
-            }
 
             while(DistanceTable.Count > 1)
             {
@@ -57,37 +52,54 @@ namespace lab6
                     DistanceTable[i].RemoveAt(min.Row);
                 }
 
-                if (min.Column >= counter || min.Row >= counter)
-                {
-                    if (min.Column >= counter && min.Row >= counter)
-                    {
-                        tree.Add(new(tree[min.Column], tree[min.Row], min.Value));
-                    }
-                    else
-                    {
-                        min.Row = inds[min.Column];
-                        int tmp = min.Column;
-                        min.Column = -1;
-                        tree.Add(new(min, tree[tmp]));
-                    }
-                }
-                else
-                {
-                    int tmp = min.Row;
-                    min.Row = inds[tmp];
-                    inds.RemoveAt(tmp);
-
-                    tmp = min.Column;
-                    min.Column = inds[tmp];
-                    inds.RemoveAt(tmp);
-
-                    tree.Add(new(min));
-                }
+                Add_TreeNode(tree, min, inds, counter);
 
                 counter -= 2;
             }
 
             return tree;
+        }
+
+        private void Add_TreeNode(List<Node> tree, TableCell cell, List<int> inds, int counter)
+        {
+            if (cell.Column >= counter || cell.Row >= counter)
+            {
+                if (cell.Column >= counter && cell.Row >= counter)
+                {
+                    tree.Add(new(tree[cell.Column], tree[cell.Row], cell.Value));
+                }
+                else
+                {
+                    cell.Row = inds[cell.Column];
+                    int tmp = cell.Column;
+                    cell.Column = -1;
+                    tree.Add(new(cell, tree[tmp]));
+                }
+            }
+            else
+            {
+                int tmp = cell.Row;
+                cell.Row = inds[tmp];
+                inds.RemoveAt(tmp);
+
+                tmp = cell.Column;
+                cell.Column = inds[tmp];
+                inds.RemoveAt(tmp);
+
+                tree.Add(new(cell));
+            }
+        }
+
+        private List<int> Create_IndList(int size)
+        {
+            var res = new List<int>();
+
+            for (int i = 0; i < size; i++)
+            {
+                res.Add(i);
+            }
+
+            return res;
         }
 
         private TableCell Get_MinDistIndexes()
