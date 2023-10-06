@@ -55,9 +55,9 @@ namespace lab6
                     DistanceTable[i].RemoveAt(min.Row);
                 }
 
-                if (min.Column >= counter || min.Row >= counter)
+                if (min.Column > counter || min.Row > counter)
                 {
-                    if (min.Column >= counter && min.Row >= counter)
+                    if (min.Column > counter && min.Row > counter)
                     {
                         tree.Add(new(tree[min.Column], tree[min.Row], min.Value));
                     }
@@ -88,7 +88,7 @@ namespace lab6
             return tree;
         }
 
-        private TableCell Get_MinDistIndexes()
+        private TableCell Get_MinDistIndexes(Table DistanceTable)
         {
             int minRow = 0;
             int minCol = 0;
