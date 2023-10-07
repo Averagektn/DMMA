@@ -1,5 +1,4 @@
-﻿using System.Diagnostics.Metrics;
-using Table = System.Collections.Generic.List<System.Collections.Generic.List<double>>;
+﻿using Table = System.Collections.Generic.List<System.Collections.Generic.List<double>>;
 
 namespace lab6
 {
@@ -30,13 +29,13 @@ namespace lab6
             var inds = Create_IndList(_tableSize);
             int counter = _tableSize;
 
-            while(DistanceTable.Count > 1)
+            while (DistanceTable.Count > 1)
             {
                 var min = Get_MinDistIndexes();
 
                 for (int j = 0; j < DistanceTable.Count; j++)
                 {
-                    DistanceTable[min.Row][j] = DistanceTable[min.Row][j] < DistanceTable[min.Column][j] ? 
+                    DistanceTable[min.Row][j] = DistanceTable[min.Row][j] < DistanceTable[min.Column][j] ?
                         DistanceTable[min.Row][j] : DistanceTable[min.Column][j];
                 }
 
@@ -45,14 +44,14 @@ namespace lab6
                 DistanceTable.RemoveAt(min.Column);
                 for (int i = 0; i < DistanceTable.Count; i++)
                 {
-                    DistanceTable[i][min.Column] = DistanceTable[i][min.Column] < DistanceTable[i][min.Row] ? 
+                    DistanceTable[i][min.Column] = DistanceTable[i][min.Column] < DistanceTable[i][min.Row] ?
                         DistanceTable[i][min.Column] : DistanceTable[i][min.Row];
                     DistanceTable[i].Add(DistanceTable[i][min.Column]);
                     DistanceTable[i].RemoveAt(min.Column);
                     DistanceTable[i].RemoveAt(min.Row);
                 }
 
-                Add_TreeNode(tree, min, inds, counter);
+                Add_TreeNode(tree, min, inds, ref counter);
 
                 counter -= 2;
             }
@@ -60,7 +59,7 @@ namespace lab6
             return tree;
         }
 
-        private void Add_TreeNode(List<Node> tree, TableCell cell, List<int> inds, int counter)
+        private void Add_TreeNode(List<Node> tree, TableCell cell, List<int> inds, ref int counter)
         {
             if (cell.Column >= counter || cell.Row >= counter)
             {
@@ -71,9 +70,10 @@ namespace lab6
                 else
                 {
                     cell.Row = inds[cell.Column];
-                    int tmp = cell.Column;
+                    //cell.Row = cell.Column;
                     cell.Column = -1;
-                    tree.Add(new(cell, tree[tmp]));
+                    tree.Add(new(cell, tree[^1]));
+                    counter++;
                 }
             }
             else
@@ -132,14 +132,14 @@ namespace lab6
         }
 
         private Table Create_DistanceTable() =>
-            new() 
-            { 
-                new() { 0, 5, 0.5, 2 }, 
+            new()
+            {
+                new() { 0, 5, 0.5, 2 },
                 new() { 5, 0, 1, 0.6 },
                 new() { 0.5, 1, 0, 2.5},
                 new() { 2, 0.6, 2.5, 0}
             };
-        
+
 
         private Table Create_DistanceTable(int maximum)
         {
@@ -162,7 +162,7 @@ namespace lab6
                     table[i].Add(table[j][i]);
                 }
             }
-            
+
             return table;
         }
 

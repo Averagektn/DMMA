@@ -5,7 +5,6 @@ namespace lab6
 
     public partial class MainForm : Form
     {
-
         private readonly Graphics Graphics;
         private readonly List<Node> Tree;
         private readonly Brush Brush = new SolidBrush(Color.Black);
@@ -26,7 +25,7 @@ namespace lab6
         {
             InitializeComponent();
             Graphics = CreateGraphics();
-            var classifier = new HierarchialClassifier();
+            var classifier = new HierarchialClassifier(4,2);
             Tree = classifier.Get_Tree();
         }
 
@@ -56,30 +55,6 @@ namespace lab6
                 Graphics.DrawLine(Pen, new(x - WIDTH_STEP, y), new(x - WIDTH_STEP, y + Get_H(node)));
                 CLR(node.LeftChild, x - WIDTH_STEP, y + Get_H(node));
             }
-            else if (node is not null && !node.IsVisited)
-            {
-                if (node.LeftLeave != -1)
-                {
-                    // Left
-                    Graphics.DrawLine(Pen, new(x, y), new(x - Width_LeaveStep, y));
-                    // Down
-                    Graphics.DrawLine(Pen, new(x - Width_LeaveStep, y), new(x - Width_LeaveStep, y + Get_LeaveH(node)));
-                    //x -= 50;
-                    Graphics.DrawString("x" + (node.LeftLeave + 1).ToString(), Font, Brush, 
-                        new Point(x - Width_LeaveStep - TEXT_POS_CORRECTION, y + Get_LeaveH(node)));
-                }
-                if (node.RightLeave != -1)
-                {
-                    // Right
-                    Graphics.DrawLine(Pen, new(x, y), new(x + Width_LeaveStep, y));
-                    // Down
-                    Graphics.DrawLine(Pen, new(x + Width_LeaveStep, y), new(x + Width_LeaveStep, y + Get_LeaveH(node)));
-                    //x += 50;
-                    Graphics.DrawString("x" + (node.RightLeave + 1).ToString(), Font, Brush, 
-                        new Point(x + Width_LeaveStep - TEXT_POS_CORRECTION, y + Get_LeaveH(node)));
-                }
-                node.IsVisited = true;
-            }
 
             if (node?.RightChild is not null)
             {
@@ -89,25 +64,31 @@ namespace lab6
                 Graphics.DrawLine(Pen, new(x + WIDTH_STEP, y), new(x + WIDTH_STEP, y + Get_H(node, false)));
                 CLR(node.RightChild, x + WIDTH_STEP, y + Get_H(node, false));
             }
-            else if (node is not null && !node.IsVisited)
+
+            if (node is not null && !node.IsVisited)
             {
                 if (node.LeftLeave != -1)
                 {
-                    // Left
-                    Graphics.DrawLine(Pen, new(x, y), new(x - Width_LeaveStep, y));
-                    // Down
-                    Graphics.DrawLine(Pen, new(x - Width_LeaveStep, y), new(x - Width_LeaveStep, y + Get_LeaveH(node)));
-                    x -= 50;
-                    Graphics.DrawString("x" + (node.LeftLeave + 1).ToString(), Font, Brush, 
-                        new Point(x - Width_LeaveStep - TEXT_POS_CORRECTION, y + Get_LeaveH(node)));
+                    Draw_Leave(node.LeftLeave, x, y, -1, Get_LeaveH(node));
                 }
                 if (node.RightLeave != -1)
                 {
-
+                    Draw_Leave(node.RightLeave, x, y, 1, Get_LeaveH(node));
                 }
                 node.IsVisited = true;
             }
+        }
 
+        private void Draw_Leave(int leave, int x, int y, int multiplyer, int leaveH)
+        {
+            int step = multiplyer * Width_LeaveStep;
+            // Right
+            Graphics.DrawLine(Pen, new(x, y), new(x + step, y));
+            // Down
+            Graphics.DrawLine(Pen, new(x + step, y), new(x + step, y + leaveH));
+            // Text
+            Graphics.DrawString("x" + (leave + 1).ToString(), Font, Brush, new Point(x + step - TEXT_POS_CORRECTION, 
+                y + leaveH));
         }
 
         private int Get_TreeW()
@@ -122,7 +103,7 @@ namespace lab6
 
         private int Get_H(Node node, bool isLeft = true)
         {
-            int res = 0;
+            int res;
 
             if (isLeft)
             {
