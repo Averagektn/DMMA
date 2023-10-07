@@ -2,21 +2,47 @@
 
 namespace lab6
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public sealed class HierarchialClassifier
     {
-
+        /// <summary>
+        /// 
+        /// </summary>
         private readonly Random Random = new();
 
-        private Table DistanceTable;
+        /// <summary>
+        /// 
+        /// </summary>
+        private readonly Table DistanceTable;
 
-        private int _tableSize;
+        /// <summary>
+        /// 
+        /// </summary>
+        private readonly int _tableSize;
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="size">
+        /// 
+        /// </param>
+        /// <param name="maxVal">
+        /// 
+        /// </param>
         public HierarchialClassifier(int size, int maxVal)
         {
             _tableSize = size;
             DistanceTable = Create_DistanceTable(maxVal);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="isMax">
+        /// 
+        /// </param>
         public HierarchialClassifier(bool isMax = false)
         {
             _tableSize = 4;
@@ -28,6 +54,9 @@ namespace lab6
 
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         private void DistanceTable_ToMax()
         {
             for (int i = 0; i < DistanceTable.Count; i++)
@@ -39,6 +68,12 @@ namespace lab6
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns>
+        /// 
+        /// </returns>
         public List<Node> Get_Tree()
         {
             var tree = new List<Node>();
@@ -75,7 +110,22 @@ namespace lab6
             return tree;
         }
 
-        private void Add_TreeNode(List<Node> tree, TableCell cell, List<int> inds, ref int counter)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="tree">
+        /// 
+        /// </param>
+        /// <param name="cell">
+        /// 
+        /// </param>
+        /// <param name="inds">
+        /// 
+        /// </param>
+        /// <param name="counter">
+        /// 
+        /// </param>
+        private static void Add_TreeNode(List<Node> tree, TableCell cell, List<int> inds, ref int counter)
         {
             if (cell.Column >= counter || cell.Row >= counter)
             {
@@ -86,7 +136,6 @@ namespace lab6
                 else
                 {
                     cell.Row = inds[cell.Column];
-                    //cell.Row = cell.Column;
                     cell.Column = -1;
                     tree.Add(new(cell, tree[^1]));
                     counter++;
@@ -106,7 +155,16 @@ namespace lab6
             }
         }
 
-        private List<int> Create_IndList(int size)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="size">
+        /// 
+        /// </param>
+        /// <returns>
+        /// 
+        /// </returns>
+        private static List<int> Create_IndList(int size)
         {
             var res = new List<int>();
 
@@ -118,11 +176,16 @@ namespace lab6
             return res;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns>
+        /// 
+        /// </returns>
         private TableCell Get_MinDistIndexes()
         {
             int minRow = 0;
             int minCol = 0;
-            //double minHeight = DistanceTable[minRow][minCol] != 0 ? DistanceTable[minRow][minCol] : double.MaxValue;
             double minHeight = double.MaxValue;
 
             for (int i = 0; i < DistanceTable.Count; i++)
@@ -148,7 +211,13 @@ namespace lab6
             return new TableCell(minRow, minCol, minHeight);
         }
 
-        private Table Create_DistanceTable() =>
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns>
+        /// 
+        /// </returns>
+        private static Table Create_DistanceTable() =>
             new()
             {
                 new() { 0, 5, 0.5, 2 },
@@ -158,6 +227,15 @@ namespace lab6
             };
 
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="maximum">
+        /// 
+        /// </param>
+        /// <returns>
+        /// 
+        /// </returns>
         private Table Create_DistanceTable(int maximum)
         {
             var table = new Table() { new() };

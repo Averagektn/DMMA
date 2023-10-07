@@ -1,23 +1,57 @@
 namespace lab6
 {
-
+    /// <summary>
+    /// 
+    /// </summary>
     public partial class MainForm : Form
     {
-        private readonly Graphics Graphics;
+        /// <summary>
+        /// 
+        /// </summary>
         private readonly List<Node> Tree;
+
+        /// <summary>
+        /// 
+        /// </summary>
+        private readonly Graphics Graphics;
+
+        /// <summary>
+        /// 
+        /// </summary>
         private readonly Brush Brush = new SolidBrush(Color.Black);
         private readonly Pen Pen = new(Color.Black);
 
+        /// <summary>
+        /// 
+        /// </summary>
         private int _heightMultiplyer = 100;
+
+        /// <summary>
+        /// 
+        /// </summary>
         private const int WIDTH_STEP = 50;
+
+        /// <summary>
+        /// 
+        /// </summary>
         private const int TEXT_POS_CORRECTION = 15;
+
+        /// <summary>
+        /// 
+        /// </summary>
         private const int AXIS_X_X = 200;
 
+        /// <summary>
+        /// 
+        /// </summary>
         private int Width_LeaveStep
         {
             get => WIDTH_STEP / 2;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public MainForm()
         {
             InitializeComponent();
@@ -35,6 +69,11 @@ namespace lab6
             Tree = classifier.Get_Tree();
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void MainForm_Paint(object sender, PaintEventArgs e)
         {
             var head = Tree[^1];
@@ -53,6 +92,18 @@ namespace lab6
             Graphics.Dispose();
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="node">
+        /// 
+        /// </param>
+        /// <param name="x">
+        /// 
+        /// </param>
+        /// <param name="y">
+        /// 
+        /// </param>
         private void CLR(Node? node, int x, int y)
         {
             if (node?.LeftChild is not null)
@@ -90,6 +141,27 @@ namespace lab6
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="leave">
+        /// 
+        /// </param>
+        /// <param name="x">
+        /// 
+        /// </param>
+        /// <param name="y">
+        /// 
+        /// </param>
+        /// <param name="multiplyer">
+        /// 
+        /// </param>
+        /// <param name="leaveH">
+        /// 
+        /// </param>
+        /// <param name="height">
+        /// 
+        /// </param>
         private void Draw_Leave(int leave, int x, int y, int multiplyer, int leaveH, double height)
         {
             int step = multiplyer * Width_LeaveStep;
@@ -103,16 +175,40 @@ namespace lab6
                 y + leaveH));
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns>
+        /// 
+        /// </returns>
         private int Get_TreeW()
         {
             return (int)Math.Pow(2, Get_TreeH());
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns>
+        /// 
+        /// </returns>
         private int Get_TreeH()
         {
             return (int)Math.Floor(Math.Log2(Tree.Count)) + 1;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="node">
+        /// 
+        /// </param>
+        /// <param name="isLeft">
+        /// 
+        /// </param>
+        /// <returns>
+        /// 
+        /// </returns>
         private int Get_H(Node node, bool isLeft = true)
         {
             int res;
@@ -129,6 +225,15 @@ namespace lab6
             return res;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="node">
+        /// 
+        /// </param>
+        /// <returns>
+        /// 
+        /// </returns>
         private int Get_LeaveH(Node node)
         {
             return (int)(node.Height * _heightMultiplyer);
