@@ -17,10 +17,26 @@ namespace lab6
             DistanceTable = Create_DistanceTable(maxVal);
         }
 
-        public HierarchialClassifier()
+        public HierarchialClassifier(bool isMax = false)
         {
             _tableSize = 4;
             DistanceTable = Create_DistanceTable();
+            if (isMax)
+            {
+                DistanceTable_ToMax();
+            }
+
+        }
+
+        private void DistanceTable_ToMax()
+        {
+            for (int i = 0; i < DistanceTable.Count; i++)
+            {
+                for (int j = 0; j < DistanceTable[i].Count; j++)
+                {
+                    DistanceTable[i][j] = DistanceTable[i][j] == 0 ? 0 : Math.Round(1 / DistanceTable[i][j], 1);
+                }
+            }
         }
 
         public List<Node> Get_Tree()
@@ -47,8 +63,8 @@ namespace lab6
                     DistanceTable[i][min.Column] = DistanceTable[i][min.Column] < DistanceTable[i][min.Row] ?
                         DistanceTable[i][min.Column] : DistanceTable[i][min.Row];
                     DistanceTable[i].Add(DistanceTable[i][min.Column]);
-                    DistanceTable[i].RemoveAt(min.Column);
                     DistanceTable[i].RemoveAt(min.Row);
+                    DistanceTable[i].RemoveAt(min.Column);
                 }
 
                 Add_TreeNode(tree, min, inds, ref counter);
@@ -106,6 +122,7 @@ namespace lab6
         {
             int minRow = 0;
             int minCol = 0;
+            //double minHeight = DistanceTable[minRow][minCol] != 0 ? DistanceTable[minRow][minCol] : double.MaxValue;
             double minHeight = double.MaxValue;
 
             for (int i = 0; i < DistanceTable.Count; i++)
