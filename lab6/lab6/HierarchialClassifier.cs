@@ -3,33 +3,33 @@
 namespace lab6
 {
     /// <summary>
-    /// 
+    ///     Creates a hierchial tree
     /// </summary>
     public sealed class HierarchialClassifier
     {
         /// <summary>
-        /// 
+        ///     Randomizator
         /// </summary>
         private readonly Random Random = new();
 
         /// <summary>
-        /// 
+        ///     Table of distances for tree creation n * n
         /// </summary>
         private readonly Table DistanceTable;
 
         /// <summary>
-        /// 
+        ///     Initial table size
         /// </summary>
         private readonly int _tableSize;
 
         /// <summary>
-        /// 
+        ///     Initializaes classifier with specified size and maximum value
         /// </summary>
         /// <param name="size">
-        /// 
+        ///     Distance table initial size
         /// </param>
         /// <param name="maxVal">
-        /// 
+        ///     Maximum value + 0.1 for random number generation
         /// </param>
         public HierarchialClassifier(int size, int maxVal)
         {
@@ -38,10 +38,20 @@ namespace lab6
         }
 
         /// <summary>
-        /// 
+        ///     Creates preset distance table:<br/>
+        ///     Max:<br/>
+        ///         { 0.0, 0.2, 2.0, 0.5 }<br/>
+        ///         { 0.2, 0.0, 1.0, 1.7}<br/>
+        ///         { 2.0, 1.0, 0.0, 0.4 }<br/>
+        ///         { 0.5, 1.7, 0.4, 0.0 }<br/><br/>
+        ///     Min:<br/>
+        ///         { 0.0, 5.0, 0.5, 2.0 }<br/>
+        ///         { 5.0, 0.0, 1.0, 0.6 }<br/>
+        ///         { 0.5, 1.0, 0.0, 2.5 }<br/>
+        ///         { 2.0, 0.6, 2.5, 0.0 }<br/><br/>
         /// </summary>
         /// <param name="isMax">
-        /// 
+        ///     If <see langword="true"/> => Max, else => Min
         /// </param>
         public HierarchialClassifier(bool isMax = false)
         {
@@ -55,7 +65,8 @@ namespace lab6
         }
 
         /// <summary>
-        /// 
+        ///     Converts to Max table.<br/> 
+        ///     See HierachialClassifier constructor: HierarchialClassifier(bool isMax)<br/>
         /// </summary>
         private void DistanceTable_ToMax()
         {
@@ -69,10 +80,12 @@ namespace lab6
         }
 
         /// <summary>
-        /// 
+        ///     Counts tree<br/> 
+        ///     List is leaves<br/> 
+        ///     Last element is head<br/>
         /// </summary>
         /// <returns>
-        /// 
+        ///     Tree
         /// </returns>
         public List<Node> Get_Tree()
         {
@@ -111,19 +124,19 @@ namespace lab6
         }
 
         /// <summary>
-        /// 
+        ///     Adds new node to tree list
         /// </summary>
         /// <param name="tree">
-        /// 
+        ///     Tree to add to
         /// </param>
         /// <param name="cell">
-        /// 
+        ///     Payload
         /// </param>
         /// <param name="inds">
-        /// 
+        ///     Idexes for payload correction
         /// </param>
         /// <param name="counter">
-        /// 
+        ///     Defines adding algorithm
         /// </param>
         private static void Add_TreeNode(List<Node> tree, TableCell cell, List<int> inds, ref int counter)
         {
@@ -156,13 +169,13 @@ namespace lab6
         }
 
         /// <summary>
-        /// 
+        ///     Index list is list where indexes are equal to values
         /// </summary>
         /// <param name="size">
-        /// 
+        ///     List size
         /// </param>
         /// <returns>
-        /// 
+        ///     New index list
         /// </returns>
         private static List<int> Create_IndList(int size)
         {
@@ -177,10 +190,10 @@ namespace lab6
         }
 
         /// <summary>
-        /// 
+        ///     Counts elements of <see cref="DistanceTable"/> with least distance between
         /// </summary>
         /// <returns>
-        /// 
+        ///     New element of the tree
         /// </returns>
         private TableCell Get_MinDistIndexes()
         {
@@ -203,19 +216,17 @@ namespace lab6
 
             if (minRow < minCol)
             {
-                int tmp = minRow;
-                minRow = minCol;
-                minCol = tmp;
+                (minCol, minRow) = (minRow, minCol);
             }
 
             return new TableCell(minRow, minCol, minHeight);
         }
 
         /// <summary>
-        /// 
+        ///     Initializes <see cref="DistanceTable"/> for empty constructor
         /// </summary>
         /// <returns>
-        /// 
+        ///     New <see cref="DistanceTable"/>
         /// </returns>
         private static Table Create_DistanceTable() =>
             new()
@@ -228,13 +239,13 @@ namespace lab6
 
 
         /// <summary>
-        /// 
+        ///     Initializes <see cref="DistanceTable"/> with random calues
         /// </summary>
         /// <param name="maximum">
-        /// 
+        ///     Maximal: maximum + 0.1
         /// </param>
         /// <returns>
-        /// 
+        ///     New <see cref="DistanceTable"/>
         /// </returns>
         private Table Create_DistanceTable(int maximum)
         {

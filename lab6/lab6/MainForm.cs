@@ -1,56 +1,52 @@
 namespace lab6
 {
     /// <summary>
-    /// 
+    ///     Tree visualization
     /// </summary>
     public partial class MainForm : Form
     {
         /// <summary>
-        /// 
+        ///     Tree. Last element is head
         /// </summary>
         private readonly List<Node> Tree;
 
         /// <summary>
-        /// 
+        ///     Drawing tool
         /// </summary>
         private readonly Graphics Graphics;
-
-        /// <summary>
-        /// 
-        /// </summary>
         private readonly Brush Brush = new SolidBrush(Color.Black);
         private readonly Pen Pen = new(Color.Black);
 
         /// <summary>
-        /// 
+        ///     To incease height differences
         /// </summary>
         private int _heightMultiplyer = 100;
 
         /// <summary>
-        /// 
+        ///     To draw branches
         /// </summary>
         private const int WIDTH_STEP = 50;
 
         /// <summary>
-        /// 
+        ///     Text centralizator
         /// </summary>
         private const int TEXT_POS_CORRECTION = 15;
 
         /// <summary>
-        /// 
+        ///     Axis coordinate
         /// </summary>
         private const int AXIS_X_X = 200;
 
         /// <summary>
-        /// 
+        ///     To draw leaves
         /// </summary>
-        private int Width_LeaveStep
+        private static int Width_LeaveStep
         {
             get => WIDTH_STEP / 2;
         }
 
         /// <summary>
-        /// 
+        ///     Tree creator
         /// </summary>
         public MainForm()
         {
@@ -70,7 +66,7 @@ namespace lab6
         }
 
         /// <summary>
-        /// 
+        ///     Visualizes trees
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -93,16 +89,17 @@ namespace lab6
         }
 
         /// <summary>
-        /// 
+        ///     Tree traversal<br/>
+        ///     While traversing draws tree elements<br/>
         /// </summary>
         /// <param name="node">
-        /// 
+        ///     Tree head
         /// </param>
         /// <param name="x">
-        /// 
+        ///     X coordinate for drawing
         /// </param>
         /// <param name="y">
-        /// 
+        ///     Y coordinate for drawing
         /// </param>
         private void CLR(Node? node, int x, int y)
         {
@@ -142,25 +139,28 @@ namespace lab6
         }
 
         /// <summary>
-        /// 
+        ///     Draws leave at specified coordinate<br/> 
+        ///     Also draws lines down and left|right<br/>
         /// </summary>
         /// <param name="leave">
-        /// 
+        ///     Leave value
         /// </param>
         /// <param name="x">
-        /// 
+        ///     X coordinate
         /// </param>
         /// <param name="y">
-        /// 
+        ///     Y coordinate
         /// </param>
         /// <param name="multiplyer">
-        /// 
+        ///     -1 to draw left line<br/>
+        ///     1 to draw right line<br/>
         /// </param>
         /// <param name="leaveH">
-        /// 
+        ///     Leave height for drawing line down
         /// </param>
         /// <param name="height">
-        /// 
+        ///     Height as tree payload<br/>
+        ///     Value is drawn as text<br/>
         /// </param>
         private void Draw_Leave(int leave, int x, int y, int multiplyer, int leaveH, double height)
         {
@@ -176,10 +176,10 @@ namespace lab6
         }
 
         /// <summary>
-        /// 
+        ///     Tree width counter
         /// </summary>
         /// <returns>
-        /// 
+        ///     Tree width
         /// </returns>
         private int Get_TreeW()
         {
@@ -187,10 +187,10 @@ namespace lab6
         }
 
         /// <summary>
-        /// 
+        ///     Tree height counter
         /// </summary>
         /// <returns>
-        /// 
+        ///     Tree height
         /// </returns>
         private int Get_TreeH()
         {
@@ -198,16 +198,16 @@ namespace lab6
         }
 
         /// <summary>
-        /// 
+        ///     Height for line drawing
         /// </summary>
         /// <param name="node">
-        /// 
+        ///     Current node
         /// </param>
         /// <param name="isLeft">
-        /// 
+        ///     Which leave do count
         /// </param>
         /// <returns>
-        /// 
+        ///     Height of the line do draw down
         /// </returns>
         private int Get_H(Node node, bool isLeft = true)
         {
@@ -226,13 +226,13 @@ namespace lab6
         }
 
         /// <summary>
-        /// 
+        ///     Counts leave height
         /// </summary>
         /// <param name="node">
-        /// 
+        ///     Node to count height for
         /// </param>
         /// <returns>
-        /// 
+        ///     Leave height
         /// </returns>
         private int Get_LeaveH(Node node)
         {
