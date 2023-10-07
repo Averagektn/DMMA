@@ -58,8 +58,35 @@ namespace lab5
             Save_ToBMP(FILENAME_RESULT);
 
             MessageBox.Show($"Separating function: {PolynomToString(polynom)}");
+            MessageBox.Show(Get_SeparatingRule(polynom));
         }
 
+        /// <summary>
+        ///     Counts separating rule by given polynom: x2 = (-p1 - p2*x1) / (p3 + p4*x1)
+        /// </summary>
+        /// <param name="polynom">
+        ///     Polynom to count separating rule
+        /// </param>
+        /// <returns>
+        ///     Separating rule
+        /// </returns>
+        private static string Get_SeparatingRule(List<int> polynom)
+        {
+            polynom[0] *= -1;
+            polynom[1] *= -1;
+
+            return $"x2 = ({polynom[0]}+{polynom[1]}*x1)/({polynom[2]}+{polynom[3]}*x1)";
+        }
+
+        /// <summary>
+        ///     Converts given polynom to string
+        /// </summary>
+        /// <param name="polynom">
+        ///     Polynom to convert
+        /// </param>
+        /// <returns>
+        ///     Polynom as string
+        /// </returns>
         private static string PolynomToString(List<int> polynom)
         {
             var res = new StringBuilder();
