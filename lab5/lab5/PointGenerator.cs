@@ -31,14 +31,13 @@
         /// <returns>
         ///     Randomly generated points
         /// </returns>
-        public static List<Point> Get_NewPointList(int size, int leftBorderX, int rightBorderX, 
-            int leftBorderY, int rightBorderY)
+        public static List<PointF> Get_NewPointList(int size, int rangeX, int rangeY)
         {
-            var points = new List<Point>();
+            var points = new List<PointF>();
 
             for (int i = 0; i < size; i++)
             {
-                points.Add(new Point(Random.Next(leftBorderX, rightBorderX), Random.Next(leftBorderY, rightBorderY)));
+                points.Add(new PointF((float)(Random.NextDouble() * rangeX * 2 - rangeX), (float)(Random.NextDouble() * rangeY * 2 - rangeY)));
             }
 
             return points;

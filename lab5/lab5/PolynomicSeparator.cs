@@ -25,7 +25,7 @@
         /// <param name="polynom">
         ///     Separating polynom
         /// </param>
-        public static void Separate(List<Point> points, List<int> polynom)
+        public static void Separate(List<PointF> points, List<int> polynom)
         {
             Class_1 = new();
             Class_2 = new();
@@ -36,11 +36,11 @@
             {
                 if (Get_SeparatingFuncValue(points[i], polynom) >= 0)
                 {
-                    Class_1.Add(points[i]);
+                    Class_1.Add(new((int)(points[i].X * 100), (int)(points[i].Y * 100)));
                 }
                 else
                 {
-                    Class_2.Add(points[i]);
+                    Class_2.Add(new((int)(points[i].X * 100), (int)(points[i].Y * 100)));
                 }
             }
         }
@@ -57,7 +57,7 @@
         /// <returns>
         ///     If positive, add to first class, else add to the second class
         /// </returns>
-        private static int Get_SeparatingFuncValue(Point point, List<int> polynom) =>
+        private static double Get_SeparatingFuncValue(PointF point, List<int> polynom) =>
             polynom[0] +
             polynom[1] * point.X +
             polynom[2] * point.Y +

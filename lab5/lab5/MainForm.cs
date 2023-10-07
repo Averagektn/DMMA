@@ -1,3 +1,4 @@
+using System.Drawing;
 using System.Text;
 
 namespace lab5
@@ -20,8 +21,9 @@ namespace lab5
         /// <summary>
         ///     Number of points to separate
         /// </summary>
+        private const int POINTS_NUM = 5000;
         //private const int POINTS_NUM = 50000;
-        private const int POINTS_NUM = 500000;
+        //private const int POINTS_NUM = 500000;
 
         /// <summary>
         ///     Point width for drawing
@@ -47,18 +49,18 @@ namespace lab5
 
             var counter = new PolynomGenerator();
             var polynom = counter.Get_SeparatingPolynom();
-            var points = PointGenerator.Get_NewPointList(POINTS_NUM, -Size.Width / 2, Size.Width / 2,
-                -Size.Height / 2, Size.Height / 2);
+            var points = PointGenerator.Get_NewPointList(POINTS_NUM, Size.Width / 200, Size.Height / 200);
+            var coordinates = Create_A(polynom);
 
             PolynomicSeparator.Separate(points, polynom);
 
             Class_1 = PolynomicSeparator.Class_1;
             Class_2 = PolynomicSeparator.Class_2;
 
-            Save_ToBMP(FILENAME_RESULT);
+            Save_ToBMP(FILENAME_RESULT, coordinates);
 
-            MessageBox.Show($"Separating function: {PolynomToString(polynom)}");
-            MessageBox.Show(Get_SeparatingRule(polynom));
+            //MessageBox.Show($"Separating function: {PolynomToString(polynom)}");
+            //MessageBox.Show(Get_SeparatingRule(polynom));
         }
 
         /// <summary>
@@ -109,6 +111,26 @@ namespace lab5
             return res.ToString();
         }
 
+        private List<Point> Create_A(List<int> polynom)
+        {
+            var graph = new List<Point>();
+
+            polynom[0] *= -1;
+            polynom[1] *= -1;
+            for (double i = 0; i < (double)Width / 100; i += 0.01)
+            {
+                double x = i - (double)Width / 200;
+                graph.Add(new((int)(x * 100) + Width / 2, Get_Y(polynom, x) + Height / 2));
+            }
+
+            return graph;
+        }
+
+        private static int Get_Y(List<int> polynom, double x)
+        {
+            return (int)(((polynom[0] + polynom[1] * x) / (polynom[2] + polynom[3] * x)) * 100);
+        }
+
         /// <summary>
         ///     Saves drawing results to .bmp file
         /// </summary>
@@ -118,16 +140,43 @@ namespace lab5
         /// <param name="filename">
         ///     Name of file to save
         /// </param>
-        private void Save_ToBMP(string filename)
+        private void Save_ToBMP(string filename, List<Point> coords)
         {
             var bmp = new Bitmap(Size.Width, Size.Height, System.Drawing.Imaging.PixelFormat.Format32bppPArgb);
             var pen = new Pen(Color.Orange);
             var g = Graphics.FromImage(bmp);
+            int i;
 
             g.Clear(Color.White);
 
             Draw_Class(Class_1!, Color.Red, g);
             Draw_Class(Class_2!, Color.Green, g);
+
+            for (int k = 0; k < coords.Count; k++)
+            {
+                if (coords[k].Y < 0)
+                {
+                    coords.RemoveAt(k);
+                }
+            }
+            coords[0] = new(coords[0].X, Height - coords[0].Y);
+            for (i = 0; i < 459; i++)
+            {
+                coords[i + 1] = new(coords[i + 1].X, Height - coords[i + 1].Y);
+                g.DrawLine(pen, coords[i], coords[i + 1]);
+            }
+            g.DrawLine(pen, coords[i], new(coords[i + 10].X, 0));
+            
+            i = 478;
+            coords[478] = coords[468];
+            for (; i < coords.Count - 1; i++)
+            {
+                if (coords[i + 1].Y > 0 && coords[i].Y > 0)
+                {
+                    coords[i + 1] = new(coords[i + 1].X, Height - coords[i + 1].Y);
+                    g.DrawLine(pen, coords[i], coords[i + 1]);
+                }
+            }
 
             bmp.Save(filename);
         }
