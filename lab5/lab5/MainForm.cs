@@ -1,4 +1,3 @@
-using System.Drawing;
 using System.Text;
 
 namespace lab5
@@ -51,7 +50,7 @@ namespace lab5
             var polynom = counter.Get_SeparatingPolynom();
             var points = PointGenerator.Get_NewPointList(POINTS_NUM, Size.Width / 200, Size.Height / 200);
             var coordinates = Create_A(polynom);
-
+            //coordinates = new();
             PolynomicSeparator.Separate(points, polynom);
 
             Class_1 = PolynomicSeparator.Class_1;
@@ -59,8 +58,8 @@ namespace lab5
 
             Save_ToBMP(FILENAME_RESULT, coordinates);
 
-            //MessageBox.Show($"Separating function: {PolynomToString(polynom)}");
-            //MessageBox.Show(Get_SeparatingRule(polynom));
+            MessageBox.Show($"Separating function: {PolynomToString(polynom)}");
+            MessageBox.Show(Get_SeparatingRule(polynom));
         }
 
         /// <summary>
@@ -152,29 +151,32 @@ namespace lab5
             Draw_Class(Class_1!, Color.Red, g);
             Draw_Class(Class_2!, Color.Green, g);
 
-            for (int k = 0; k < coords.Count; k++)
+            if (coords.Count != 0)
             {
-                if (coords[k].Y < 0)
+                for (int k = 0; k < coords.Count; k++)
                 {
-                    coords.RemoveAt(k);
+                    if (coords[k].Y < 0)
+                    {
+                        coords.RemoveAt(k);
+                    }
                 }
-            }
-            coords[0] = new(coords[0].X, Height - coords[0].Y);
-            for (i = 0; i < 459; i++)
-            {
-                coords[i + 1] = new(coords[i + 1].X, Height - coords[i + 1].Y);
-                g.DrawLine(pen, coords[i], coords[i + 1]);
-            }
-            g.DrawLine(pen, coords[i], new(coords[i + 10].X, 0));
-            
-            i = 478;
-            coords[478] = coords[468];
-            for (; i < coords.Count - 1; i++)
-            {
-                if (coords[i + 1].Y > 0 && coords[i].Y > 0)
+                coords[0] = new(coords[0].X, Height - coords[0].Y);
+                for (i = 0; i < 459; i++)
                 {
                     coords[i + 1] = new(coords[i + 1].X, Height - coords[i + 1].Y);
                     g.DrawLine(pen, coords[i], coords[i + 1]);
+                }
+                g.DrawLine(pen, coords[i], new(coords[i + 10].X, 0));
+
+                i = 478;
+                coords[478] = coords[468];
+                for (; i < coords.Count - 1; i++)
+                {
+                    if (coords[i + 1].Y > 0 && coords[i].Y > 0)
+                    {
+                        coords[i + 1] = new(coords[i + 1].X, Height - coords[i + 1].Y);
+                        g.DrawLine(pen, coords[i], coords[i + 1]);
+                    }
                 }
             }
 
