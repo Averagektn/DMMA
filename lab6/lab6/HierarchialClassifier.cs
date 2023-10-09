@@ -149,6 +149,7 @@ namespace lab6
                 else
                 {
                     cell.Row = inds[cell.Column];
+                    inds.RemoveAt(cell.Column);
                     cell.Column = -1;
                     tree.Add(new(cell, tree[^1]));
                     counter++;
