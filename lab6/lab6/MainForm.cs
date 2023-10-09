@@ -35,7 +35,7 @@ namespace lab6
         /// <summary>
         ///     Axis coordinate
         /// </summary>
-        private const int AXIS_X_X = 200;
+        private const int AXIS_X_X = 300;
 
         /// <summary>
         ///     To draw leaves
@@ -107,20 +107,32 @@ namespace lab6
             {
                 Graphics.DrawString(node.Height.ToString(), Font, Brush, AXIS_X_X, y - 10);
 
+                
                 // Left
                 Graphics.DrawLine(Pen, new(x, y), new(x - WIDTH_STEP, y));
                 // Down
                 Graphics.DrawLine(Pen, new(x - WIDTH_STEP, y), new(x - WIDTH_STEP, y + Get_H(node)));
+
+                Graphics.DrawEllipse(new Pen(Color.Orange), new Rectangle(x - 5, y - 5, 10, 10));
+                Graphics.FillEllipse(new SolidBrush(Color.Orange), new Rectangle(x - 5, y - 5, 10, 10));
+
                 CLR(node.LeftChild, x - WIDTH_STEP, y + Get_H(node));
             }
 
             if (node?.RightChild is not null)
             {
                 Graphics.DrawString(node.Height.ToString(), Font, Brush, AXIS_X_X, y - 10);
+
+                
+
                 // Right
                 Graphics.DrawLine(Pen, new(x, y), new(x + WIDTH_STEP, y));
                 // Down
                 Graphics.DrawLine(Pen, new(x + WIDTH_STEP, y), new(x + WIDTH_STEP, y + Get_H(node, false)));
+
+                Graphics.DrawEllipse(new Pen(Color.Orange), new Rectangle(x - 5, y - 5, 10, 10));
+                Graphics.FillEllipse(new SolidBrush(Color.Orange), new Rectangle(x - 5, y - 5, 10, 10));
+
                 CLR(node.RightChild, x + WIDTH_STEP, y + Get_H(node, false));
             }
 
@@ -165,11 +177,16 @@ namespace lab6
         private void Draw_Leave(int leave, int x, int y, int multiplyer, int leaveH, double height)
         {
             int step = multiplyer * Width_LeaveStep;
+            
             Graphics.DrawString(height.ToString(), Font, Brush, AXIS_X_X, y - 10);
             // Right
             Graphics.DrawLine(Pen, new(x, y), new(x + step, y));
             // Down
             Graphics.DrawLine(Pen, new(x + step, y), new(x + step, y + leaveH));
+
+            Graphics.DrawEllipse(new Pen(Color.Orange), new Rectangle(x - 5, y - 5, 10, 10));
+            Graphics.FillEllipse(new SolidBrush(Color.Orange), new Rectangle(x - 5, y - 5, 10, 10));
+
             // Text
             Graphics.DrawString("x" + (leave + 1).ToString(), Font, Brush, new Point(x + step - TEXT_POS_CORRECTION,
                 y + leaveH));
