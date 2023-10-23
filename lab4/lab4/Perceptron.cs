@@ -60,10 +60,10 @@ namespace lab4
             WeightMatrices = new();
 
             // Uncomment for stable work
-            //Classes = KAverage.Get_DividedClasses(classesNum, objectsNum, distinctionsNum);
+            Classes = KAverage.Get_DividedClasses(classesNum, objectsNum, distinctionsNum);
 
             // Uncomment for test values
-            Classes = new List<Class>();
+/*            Classes = new List<Class>();
             var center_1 = new List<int> { 0, 0 };
             var class_1 = new Class(center_1);
             Classes.Add(class_1);
@@ -75,7 +75,7 @@ namespace lab4
             Classes.Add(class_3);
             Classes[0].Objects.Add(new ClassObject(center_1));
             Classes[1].Objects.Add(new ClassObject(center_2));
-            Classes[2].Objects.Add(new ClassObject(center_3));
+            Classes[2].Objects.Add(new ClassObject(center_3));*/
 
             Extend_Objects();
             Create_WeightMatrices();
