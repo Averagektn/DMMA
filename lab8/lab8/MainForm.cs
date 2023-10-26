@@ -5,6 +5,13 @@ namespace lab8
         public MainForm()
         {
             InitializeComponent();
+
+            var generator = new WordGenerator(new List<string>() { "aabc", "bcda", "cabd", "aaba"});
+
+
+
         }
+
     }
+
 }
