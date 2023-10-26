@@ -37,27 +37,25 @@ The goal and result of the algorithm is to divide objects into classes as compac
 ---
 ## Lab №7
 * Распознавание объектов с помощью синтаксических методов.
-Цель работы: изучить особенности синтаксических методов
-распознавания объектов, методы распознавания объектов на основе деревьев
-и графов, а также типы грамматических разборов сверху вниз и снизу вверх.
-Исходные данные: грамматика, задающая описание терминальных и
-нетерминальных объектов, а также правила построения и распознавания
-образов.
-Выходные данные: изображения, построенные и классифицированные
-с помощью заданной грамматики.
+Цель работы: изучить особенности синтаксических методов распознавания объектов, методы распознавания объектов на основе деревьев и графов, а также типы грамматических разборов сверху вниз и снизу вверх.
+Исходные данные: грамматика, задающая описание терминальных и нетерминальных объектов, а также правила построения и распознавания образов.
+Выходные данные: изображения, построенные и классифицированные с помощью заданной грамматики.
 Примечание: Результат работы представляется графически.
 * Recognizing objects with the help of syntactic methods.
-Purpose of work: to study the peculiarities of syntactic methods
-object recognition, methods of recognizing objects on the basis of trees
-and graphs, as well as types of top-down and bottom-up grammars.
-Input data: a grammar specifying the description of terminal and
-non-terminal objects, as well as rules of construction and recognition of
-images.
-Output data: images constructed and classified
-using the given grammar.
+Purpose of work: to study the peculiarities of syntactic methods object recognition, methods of recognizing objects on the basis of trees and graphs, as well as types of top-down and bottom-up grammars.
+Input data: a grammar specifying the description of terminal and non-terminal objects, as well as rules of construction and recognition of images.
+Output data: images constructed and classified using the given grammar.
 Note: The result of the work is presented graphically.
 ---
 ## Lab №8
+* Метод автоматической генерации текстовой информации
+Цель работы: научиться строить автоматические грамматики на основе обучающей выборки.
+Исходные данные: заданное множество терминальных цепочек.
+Выходные данные: грамматика, способная автоматически порождать заданные цепочки, а также бесконечное множество цепочек, схожих по структуре с исходными.
+* Method of automatic generation of text information
+Purpose of work: to learn to build automatic grammars on the basis of training sample.
+Input data: a given set of terminal chains.
+Output data: a grammar capable of automatically generating the given chains, as well as an infinite number of chains similar in structure to the initial ones.
 ---
 ## Lab №9
 ---
