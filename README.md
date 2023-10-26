@@ -36,6 +36,26 @@ The goal and result of the algorithm is to divide objects into classes as compac
 * Recognition methods where the classes are known in advance and the separating functions are developed during training, strongly influence the choice of features and separation criteria on which the result depends. In order to reduce the influence of initial information, they are enriched with additional information. For example, they clarify spatial or temporal relations; find existing relations between the investigated objects. Such actions are called symbolic description, which is obtained as a result of the grouping procedure, which performs the role of and classification procedure. The sought symbolic representation may take the form of a hierarchical structure, a minimum length tree or a symbolic description of classes. The hierarchy is constructed based on the concept of distance. The method consists in developing a sequence of subdivisions of the set under consideration into subgroups, one of which possesses some property that is not inherent in the others. The hierarchy sought is based on the samples presented. Since their number is very large, sometimes different hierarchies can be obtained on the same set of initial data.Construct hierarchies based on the minimum and maximum criteria. 
 ---
 ## Lab №7
+* Распознавание объектов с помощью синтаксических методов.
+Цель работы: изучить особенности синтаксических методов
+распознавания объектов, методы распознавания объектов на основе деревьев
+и графов, а также типы грамматических разборов сверху вниз и снизу вверх.
+Исходные данные: грамматика, задающая описание терминальных и
+нетерминальных объектов, а также правила построения и распознавания
+образов.
+Выходные данные: изображения, построенные и классифицированные
+с помощью заданной грамматики.
+Примечание: Результат работы представляется графически.
+* Recognizing objects with the help of syntactic methods.
+Purpose of work: to study the peculiarities of syntactic methods
+object recognition, methods of recognizing objects on the basis of trees
+and graphs, as well as types of top-down and bottom-up grammars.
+Input data: a grammar specifying the description of terminal and
+non-terminal objects, as well as rules of construction and recognition of
+images.
+Output data: images constructed and classified
+using the given grammar.
+Note: The result of the work is presented graphically.
 ---
 ## Lab №8
 ---
