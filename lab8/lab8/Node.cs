@@ -59,6 +59,22 @@
             return children;
         }
 
+        public void Merge(Node node)
+        {
+            var merging = node.GetChildren(); 
+            for (int i = 0; i < merging.Count; i++)
+            {
+                if (Contains(merging[i].Symbol))
+                {
+                    GetChild(merging[i].Symbol).Merge(merging[i]);
+                }
+                else
+                {
+                    AddChild(merging[i]);
+                }
+            }
+        }
+
     }
 
 }
