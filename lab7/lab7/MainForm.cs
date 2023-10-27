@@ -2,6 +2,7 @@ namespace lab7
 {
     public partial class MainForm : Form
     {
+        private const int POINT_RANGE = 10;
         Node? tail;
         Node? head;
         List<Point> points = new();
@@ -34,37 +35,47 @@ namespace lab7
             {
                 points.Add(new Point(e.X, e.Y));
             }
-            g.DrawEllipse(new Pen(Color.Red), new Rectangle(e.X, e.Y, 10, 10));
-            g.FillEllipse(new SolidBrush(Color.Red), new Rectangle(e.X, e.Y, 10, 10));
+            
+            g.DrawEllipse(new Pen(Color.Red), 
+                new Rectangle(e.X - POINT_RANGE / 2, e.Y - POINT_RANGE / 2, POINT_RANGE, POINT_RANGE));
+            g.FillEllipse(new SolidBrush(Color.Red), 
+                new Rectangle(e.X - POINT_RANGE / 2, e.Y - POINT_RANGE / 2, POINT_RANGE, POINT_RANGE));
         }
 
         private void MainForm_MouseUp(object sender, MouseEventArgs e)
         {
             if (a)
             {
+                g.DrawLine(new Pen(Color.Red), tail!.Center, e.Location);
                 tail = tail?.AddNext(new Node(new Point(e.X, e.Y)));
                 length++;
             }
             else
             {
+                g.DrawLine(new Pen(Color.Red), points[^1], e.Location);
                 points.Add(new Point(e.X, e.Y));
             }
 
-            g.DrawEllipse(new Pen(Color.Red), new Rectangle(e.X, e.Y, 10, 10));
-            g.FillEllipse(new SolidBrush(Color.Red), new Rectangle(e.X, e.Y, 10, 10));
+            g.DrawEllipse(new Pen(Color.Red), 
+                new Rectangle(e.X - POINT_RANGE / 2, e.Y - POINT_RANGE / 2, POINT_RANGE, POINT_RANGE));
+            g.FillEllipse(new SolidBrush(Color.Red), 
+                new Rectangle(e.X - POINT_RANGE / 2, e.Y - POINT_RANGE / 2, POINT_RANGE, POINT_RANGE));
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            a = false;
-            tail?.AddNext(head);
-            length++;
+            if (head is not null)
+            {
+                a = false;
+                tail?.AddNext(head);
+                length++;
+            }
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
             points.Add(points[0]);
-            if (length <= points.Count && Classifier.IsSameClass(head, points))
+            if (length == points.Count && Classifier.IsSameClass(head, points))
             {
                 MessageBox.Show("Works!");
             }

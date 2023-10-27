@@ -5,6 +5,7 @@
         public static bool IsSameClass(Node referenceClass, List<Point> candidate)
         { 
             bool equals = false;
+
             if (candidate.Count == 1)
             {
                 return true;
