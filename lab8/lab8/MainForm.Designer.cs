@@ -28,78 +28,130 @@
         /// </summary>
         private void InitializeComponent()
         {
-            textBox1 = new TextBox();
-            button1 = new Button();
-            button2 = new Button();
-            button3 = new Button();
-            textBox2 = new TextBox();
+            tbVerifyngString = new TextBox();
+            btnGenerateGrammar = new Button();
+            btnGenetateChains = new Button();
+            btnVerify = new Button();
+            dgvGrammar = new DataGridView();
+            Grammar = new DataGridViewTextBoxColumn();
+            dgvChains = new DataGridView();
+            Chains = new DataGridViewTextBoxColumn();
+            ((System.ComponentModel.ISupportInitialize)dgvGrammar).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)dgvChains).BeginInit();
             SuspendLayout();
             // 
-            // textBox1
+            // tbVerifyngString
             // 
-            textBox1.Location = new Point(469, 74);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(100, 26);
-            textBox1.TabIndex = 0;
+            tbVerifyngString.Font = new Font("Segoe UI", 14F, FontStyle.Regular, GraphicsUnit.Point);
+            tbVerifyngString.Location = new Point(409, 442);
+            tbVerifyngString.Margin = new Padding(4, 4, 4, 4);
+            tbVerifyngString.Name = "tbVerifyngString";
+            tbVerifyngString.Size = new Size(167, 32);
+            tbVerifyngString.TabIndex = 0;
             // 
-            // button1
+            // btnGenerateGrammar
             // 
-            button1.Location = new Point(454, 231);
-            button1.Name = "button1";
-            button1.Size = new Size(75, 23);
-            button1.TabIndex = 1;
-            button1.Text = "button1";
-            button1.UseVisualStyleBackColor = true;
+            btnGenerateGrammar.Font = new Font("Segoe UI", 14F, FontStyle.Regular, GraphicsUnit.Point);
+            btnGenerateGrammar.Location = new Point(41, 482);
+            btnGenerateGrammar.Margin = new Padding(4, 4, 4, 4);
+            btnGenerateGrammar.Name = "btnGenerateGrammar";
+            btnGenerateGrammar.Size = new Size(275, 66);
+            btnGenerateGrammar.TabIndex = 1;
+            btnGenerateGrammar.Text = "Generate grammar";
+            btnGenerateGrammar.UseVisualStyleBackColor = true;
+            btnGenerateGrammar.Click += GenerateGrammar;
             // 
-            // button2
+            // btnGenetateChains
             // 
-            button2.Location = new Point(416, 164);
-            button2.Name = "button2";
-            button2.Size = new Size(75, 23);
-            button2.TabIndex = 2;
-            button2.Text = "button2";
-            button2.UseVisualStyleBackColor = true;
+            btnGenetateChains.Font = new Font("Segoe UI", 14F, FontStyle.Regular, GraphicsUnit.Point);
+            btnGenetateChains.Location = new Point(669, 482);
+            btnGenetateChains.Margin = new Padding(4, 4, 4, 4);
+            btnGenetateChains.Name = "btnGenetateChains";
+            btnGenetateChains.Size = new Size(275, 66);
+            btnGenetateChains.TabIndex = 2;
+            btnGenetateChains.Text = "Generate chains";
+            btnGenetateChains.UseVisualStyleBackColor = true;
+            btnGenetateChains.Click += GenetateChains;
             // 
-            // button3
+            // btnVerify
             // 
-            button3.Location = new Point(426, 319);
-            button3.Name = "button3";
-            button3.Size = new Size(75, 23);
-            button3.TabIndex = 3;
-            button3.Text = "button3";
-            button3.UseVisualStyleBackColor = true;
+            btnVerify.Font = new Font("Segoe UI", 14F, FontStyle.Regular, GraphicsUnit.Point);
+            btnVerify.Location = new Point(355, 482);
+            btnVerify.Margin = new Padding(4, 4, 4, 4);
+            btnVerify.Name = "btnVerify";
+            btnVerify.Size = new Size(275, 66);
+            btnVerify.TabIndex = 3;
+            btnVerify.Text = "Verify";
+            btnVerify.UseVisualStyleBackColor = true;
+            btnVerify.Click += Verify;
             // 
-            // textBox2
+            // dgvGrammar
             // 
-            textBox2.Location = new Point(634, 176);
-            textBox2.Name = "textBox2";
-            textBox2.Size = new Size(100, 26);
-            textBox2.TabIndex = 4;
+            dgvGrammar.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvGrammar.Columns.AddRange(new DataGridViewColumn[] { Grammar });
+            dgvGrammar.Location = new Point(-4, 3);
+            dgvGrammar.Margin = new Padding(4, 4, 4, 4);
+            dgvGrammar.Name = "dgvGrammar";
+            dgvGrammar.RowTemplate.Height = 28;
+            dgvGrammar.Size = new Size(490, 400);
+            dgvGrammar.TabIndex = 5;
+            // 
+            // Grammar
+            // 
+            Grammar.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            Grammar.HeaderText = "Grammar";
+            Grammar.Name = "Grammar";
+            // 
+            // dgvChains
+            // 
+            dgvChains.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvChains.Columns.AddRange(new DataGridViewColumn[] { Chains });
+            dgvChains.Location = new Point(494, 3);
+            dgvChains.Margin = new Padding(4, 4, 4, 4);
+            dgvChains.Name = "dgvChains";
+            dgvChains.RowTemplate.Height = 28;
+            dgvChains.Size = new Size(490, 400);
+            dgvChains.TabIndex = 6;
+            // 
+            // Chains
+            // 
+            Chains.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            Chains.HeaderText = "Chains";
+            Chains.Name = "Chains";
+            Chains.ReadOnly = true;
             // 
             // MainForm
             // 
-            AutoScaleDimensions = new SizeF(8F, 19F);
+            AutoScaleDimensions = new SizeF(11F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(984, 561);
-            Controls.Add(textBox2);
-            Controls.Add(button3);
-            Controls.Add(button2);
-            Controls.Add(button1);
-            Controls.Add(textBox1);
+            Controls.Add(dgvChains);
+            Controls.Add(dgvGrammar);
+            Controls.Add(btnVerify);
+            Controls.Add(btnGenetateChains);
+            Controls.Add(btnGenerateGrammar);
+            Controls.Add(tbVerifyngString);
+            Font = new Font("Segoe UI", 14F, FontStyle.Regular, GraphicsUnit.Point);
             FormBorderStyle = FormBorderStyle.FixedSingle;
+            Margin = new Padding(4, 4, 4, 4);
             MaximizeBox = false;
             Name = "MainForm";
             Text = "Lab 8";
+            ((System.ComponentModel.ISupportInitialize)dgvGrammar).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dgvChains).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
 
         #endregion
 
-        private TextBox textBox1;
-        private Button button1;
-        private Button button2;
-        private Button button3;
-        private TextBox textBox2;
+        private TextBox tbVerifyngString;
+        private Button btnGenerateGrammar;
+        private Button btnGenetateChains;
+        private Button btnVerify;
+        private DataGridView dgvGrammar;
+        private DataGridViewTextBoxColumn Grammar;
+        private DataGridView dgvChains;
+        private DataGridViewTextBoxColumn Chains;
     }
 }
