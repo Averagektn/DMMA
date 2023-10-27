@@ -16,8 +16,8 @@ namespace lab8
             for (char? letter = GetRandomSymbol(children); letter is not null; letter = GetRandomSymbol(children))
             {
                 chain.Append(letter);
-                head = head.GetChild((char)letter);
-                children = head.GetChildren();
+                head = head?.GetChild((char)letter);
+                children = head?.GetChildren();
             }
 
             return chain.ToString();

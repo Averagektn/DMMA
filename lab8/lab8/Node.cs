@@ -21,47 +21,27 @@
 
         public void AddChildren(List<Node> children)
         {
-            for (int i = 0; i < children.Count; i++)
-            {
-                this.children.Add(children[i]);
-            }
+            this.children.AddRange(children);
         }
+
 
         public void RemoveChild(char symbol)
         {
-            for (int i = 0; i < children.Count; i++)
-            {
-                if (children[i].Symbol == symbol)
-                {
-                    children.RemoveAt(i);
-                }
-            }
+            children.RemoveAll(child => child.Symbol == symbol);
         }
+
 
         public bool Contains(char symbol)
         {
-            bool res = false;
-
-            for (int i = 0; i < children.Count && !res; i++)
-            {
-                res = children[i].Symbol == symbol;
-            }
-
-            return res;
+            return children.Any(child => child.Symbol == symbol);
         }
 
-        public Node GetChild(char symbol)
+
+        public Node? GetChild(char symbol)
         {
-            int i;
-            bool res = false;
-
-            for (i = 0; i < children.Count && !res; i++)
-            {
-                res = children[i].Symbol == symbol;
-            }
-
-            return children[i - 1];
+            return children.FirstOrDefault(child => child.Symbol == symbol);
         }
+
 
         public List<Node> GetChildren()
         {
@@ -76,7 +56,7 @@
             {
                 if (Contains(merging[i].Symbol))
                 {
-                    GetChild(merging[i].Symbol).Merge(merging[i]);
+                    GetChild(merging[i].Symbol)?.Merge(merging[i]);
                 }
                 else
                 {

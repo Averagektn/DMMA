@@ -10,7 +10,7 @@
             bool contains = true;
             var head = ParsingTree;
 
-            for (int i = 0; i < chain.Length && contains; i++)
+            for (int i = 0; i < chain.Length && contains && head is not null; i++)
             {
                 if (head.Contains(chain[i]))
                 {

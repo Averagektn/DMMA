@@ -18,12 +18,12 @@
 
         private Node Get_Tree(List<string> words)
         {
-            ParsingTree = new Node('\0');
+            Node? ParsingTree = new('\0');
             var head = ParsingTree;
 
             for (int i = 0; i < words.Count; i++)
             {
-                for (int j = 0; j < words[i].Length; j++)
+                for (int j = 0; j < words[i].Length && ParsingTree is not null; j++)
                 {
                     if (ParsingTree.Contains(words[i][j]))
                     {
