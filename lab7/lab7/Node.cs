@@ -23,6 +23,7 @@
             range = GetRange(Next.Center, Center);
             dx = Math.Abs(Next.Center.X - Center.X);
             dy = Math.Abs(Next.Center.Y - Center.Y);
+
             return next;
         }
 

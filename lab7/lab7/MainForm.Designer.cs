@@ -28,38 +28,42 @@
         /// </summary>
         private void InitializeComponent()
         {
-            button1 = new Button();
-            button2 = new Button();
+            btnTemplateIsOver = new Button();
+            btnCandidateIsOver = new Button();
             SuspendLayout();
             // 
-            // button1
+            // btnTemplateIsOver
             // 
-            button1.Location = new Point(341, 44);
-            button1.Name = "button1";
-            button1.Size = new Size(75, 23);
-            button1.TabIndex = 0;
-            button1.Text = "button1";
-            button1.UseVisualStyleBackColor = true;
-            button1.Click += button1_Click;
+            btnTemplateIsOver.Location = new Point(90, 451);
+            btnTemplateIsOver.Margin = new Padding(4, 4, 4, 4);
+            btnTemplateIsOver.Name = "btnTemplateIsOver";
+            btnTemplateIsOver.Size = new Size(200, 50);
+            btnTemplateIsOver.TabIndex = 0;
+            btnTemplateIsOver.Text = "Template is over";
+            btnTemplateIsOver.UseVisualStyleBackColor = true;
+            btnTemplateIsOver.Click += TemplateIsOver;
             // 
-            // button2
+            // btnCandidateIsOver
             // 
-            button2.Location = new Point(514, 39);
-            button2.Name = "button2";
-            button2.Size = new Size(75, 23);
-            button2.TabIndex = 1;
-            button2.Text = "button2";
-            button2.UseVisualStyleBackColor = true;
-            button2.Click += button2_Click;
+            btnCandidateIsOver.Location = new Point(695, 451);
+            btnCandidateIsOver.Margin = new Padding(4, 4, 4, 4);
+            btnCandidateIsOver.Name = "btnCandidateIsOver";
+            btnCandidateIsOver.Size = new Size(200, 50);
+            btnCandidateIsOver.TabIndex = 1;
+            btnCandidateIsOver.Text = "Candidate is over";
+            btnCandidateIsOver.UseVisualStyleBackColor = true;
+            btnCandidateIsOver.Click += CandidateIsOver;
             // 
             // MainForm
             // 
-            AutoScaleDimensions = new SizeF(8F, 19F);
+            AutoScaleDimensions = new SizeF(11F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(984, 561);
-            Controls.Add(button2);
-            Controls.Add(button1);
+            Controls.Add(btnCandidateIsOver);
+            Controls.Add(btnTemplateIsOver);
+            Font = new Font("Segoe UI", 14F, FontStyle.Regular, GraphicsUnit.Point);
             FormBorderStyle = FormBorderStyle.FixedSingle;
+            Margin = new Padding(4, 4, 4, 4);
             MaximizeBox = false;
             Name = "MainForm";
             Text = "Lab7";
@@ -70,7 +74,7 @@
 
         #endregion
 
-        private Button button1;
-        private Button button2;
+        private Button btnTemplateIsOver;
+        private Button btnCandidateIsOver;
     }
 }
