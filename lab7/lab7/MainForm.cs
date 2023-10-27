@@ -1,47 +1,47 @@
 namespace lab7
 {
     /// <summary>
-    /// 
+    ///     Main program form
     /// </summary>
     public partial class MainForm : Form
     {
         /// <summary>
-        /// 
+        ///     Drawing point diameter  
         /// </summary>
         private const int POINT_RANGE = 10;
 
         /// <summary>
-        /// 
+        ///     Template teil
         /// </summary>
         private Node? tail;
 
         /// <summary>
-        /// 
+        ///     Template head
         /// </summary>
         private Node? head;
 
         /// <summary>
-        /// 
+        ///     Graphical representation
         /// </summary>
         private readonly Graphics g;
 
         /// <summary>
-        /// 
+        ///     Candidte points
         /// </summary>
         private readonly List<Point> points = new();
 
         /// <summary>
-        /// 
+        ///     Length of template
         /// </summary>
         private int templateLength = 0;
 
         /// <summary>
-        /// 
+        ///     <see langword="true"/> if template is not drawn, otherwise <see langword="false"/>
         /// </summary>
         private bool isDrawingTemplate;
 
         /// <summary>
-        /// 
+        ///     Creates form
         /// </summary>
         public MainForm()
         {
@@ -51,7 +51,7 @@ namespace lab7
         }
 
         /// <summary>
-        /// 
+        ///     Specifies mouse coordinates 
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -82,7 +82,7 @@ namespace lab7
         }
 
         /// <summary>
-        /// 
+        ///     Specifies mouse coordinates
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -107,7 +107,7 @@ namespace lab7
         }
 
         /// <summary>
-        /// 
+        ///     Start of points drawing
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -122,7 +122,7 @@ namespace lab7
         }
 
         /// <summary>
-        /// 
+        ///     Check if candidate points are equal to class template
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -146,7 +146,7 @@ namespace lab7
         }
 
         /// <summary>
-        /// 
+        ///     Class images generation
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>

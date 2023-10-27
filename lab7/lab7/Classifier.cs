@@ -1,24 +1,24 @@
 ﻿namespace lab7
 {
     /// <summary>
-    /// 
+    ///     Classifies candidates points
     /// </summary>
     public class Classifier
     {
         /// <summary>
-        /// 
+        ///     Check if potential points are included in the class
         /// </summary>
         /// <param name="referenceClass">
-        /// 
+        ///     Calss template
         /// </param>
         /// <param name="candidate">
-        /// 
+        ///     Candidate points
         /// </param>
         /// <returns>
-        /// 
+        ///     <see langword="true"/> if the points belong to the class, otherwise <see langword="false"/>
         /// </returns>
         /// <exception cref="NullReferenceException">
-        /// 
+        ///     Candidate list length must be equal to reference class length
         /// </exception>
         public static bool IsSameClass(Node referenceClass, List<Point> candidate)
         { 

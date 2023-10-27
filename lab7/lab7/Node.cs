@@ -1,40 +1,40 @@
 ﻿namespace lab7
 {
     /// <summary>
-    /// 
+    ///     Grammar node
     /// </summary>
     public class Node
     {
         /// <summary>
-        /// 
+        ///     Error range
         /// </summary>
         protected const int ERROR = 20;
 
         /// <summary>
-        /// 
+        ///     Grammar value
         /// </summary>
         public readonly Point Center;
         
         /// <summary>
-        /// 
+        ///     Next grammar element
         /// </summary>
         public Node? Next { get; private set; }
 
         /// <summary>
-        /// 
+        ///     Difference between <see cref="Next"/> center and <see cref="Center"/> X coordinate
         /// </summary>
         public int DX { get; protected set; }
-        
+
         /// <summary>
-        /// 
+        ///     Difference between <see cref="Next"/> center and <see cref="Center"/> Y coordinate
         /// </summary>
         public int DY { get; protected set; }
 
         /// <summary>
-        /// 
+        ///     New grammar element with specified center
         /// </summary>
         /// <param name="center">
-        /// 
+        ///     Node value
         /// </param>
         public Node(Point center)
         {
@@ -45,19 +45,19 @@
         }
 
         /// <summary>
-        /// 
+        ///     New node with child element
         /// </summary>
         /// <param name="center">
-        /// 
+        ///     Node value
         /// </param>
         /// <param name="next">
-        /// 
+        ///     Next node
         /// </param>
         /// <param name="dx">
-        /// 
+        ///     Nodes difference in X coordinate
         /// </param>
         /// <param name="dy">
-        /// 
+        ///     Nodes difference in Y coordinate
         /// </param>
         public Node(Point center, Node? next, int dx, int dy) : this(center)
         {
@@ -67,13 +67,13 @@
         }
 
         /// <summary>
-        /// 
+        ///     Adds new child element
         /// </summary>
         /// <param name="next">
-        /// 
+        ///     Child element
         /// </param>
         /// <returns>
-        /// 
+        ///     Child element
         /// </returns>
         public Node AddNext(Node next)
         {
@@ -85,16 +85,16 @@
         }
 
         /// <summary>
-        /// 
+        ///     Checks if point is equal to node
         /// </summary>
         /// <param name="curr">
-        /// 
+        ///     Point to check
         /// </param>
         /// <param name="next">
-        /// 
+        ///     Point's child element
         /// </param>
         /// <returns>
-        /// 
+        ///     <see langword="true"/> if point and node are equal, otherwise <see langword="false"/>
         /// </returns>
         public bool Equals(Point curr, Point next)
         {
@@ -106,16 +106,16 @@
         }
 
         /// <summary>
-        /// 
+        ///     Counts range between points
         /// </summary>
         /// <param name="p1">
-        /// 
+        ///     First point
         /// </param>
         /// <param name="p2">
-        /// 
+        ///     Second point
         /// </param>
         /// <returns>
-        /// 
+        ///     Range
         /// </returns>
         protected static int GetRange(Point p1, Point p2)
         {
@@ -123,16 +123,16 @@
         }
 
         /// <summary>
-        /// 
+        ///     Checks if points are in node's bounds
         /// </summary>
         /// <param name="p1">
-        /// 
+        ///     First point
         /// </param>
         /// <param name="p2">
-        /// 
+        ///     Second point
         /// </param>
         /// <returns>
-        /// 
+        ///     <see langword="true"/> if points are in node's bounds, otherwise <see langword="false"/>
         /// </returns>
         protected bool IsInBounds(Point p1, Point p2)
         {
