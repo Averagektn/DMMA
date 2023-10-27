@@ -1,21 +1,46 @@
 ﻿namespace lab8
 {
+    /// <summary>
+    ///     Grammar of given language
+    /// </summary>
     public class Grammar
     {
+        /// <summary>
+        ///     Parsing tree of given grammar
+        /// </summary>
         public Node ParsingTree { get; protected set; }
 
-        protected readonly Random random = new();
-
+        /// <summary>
+        ///     Cheates new grammar based on character chains 
+        /// </summary>
+        /// <param name="words">
+        ///     Character chains
+        /// </param>
         public Grammar(List<string> words)
         {
             ParsingTree = Get_Tree(words);
         }
 
+        /// <summary>
+        ///     Cheates new grammar based on parsing tree
+        /// </summary>
+        /// <param name="tree">
+        ///     Parsing tree
+        /// </param>
         public Grammar(Node tree)
         {
             ParsingTree = tree;
         }
 
+        /// <summary>
+        ///     Generates parsing tree
+        /// </summary>
+        /// <param name="words">
+        ///     Character chains
+        /// </param>
+        /// <returns>
+        ///     Parsing tree root
+        /// </returns>
         private Node Get_Tree(List<string> words)
         {
             Node? ParsingTree = new('\0');
@@ -43,6 +68,12 @@
             return head;
         }
 
+        /// <summary>
+        ///     Tree compession
+        /// </summary>
+        /// <param name="head">
+        ///     Parsing tree root
+        /// </param>
         private void Merge(Node head)
         {
             var roots = head.GetChildren();

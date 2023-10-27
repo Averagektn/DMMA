@@ -1,9 +1,18 @@
 namespace lab8
 {
+    /// <summary>
+    ///     Main form of the programm
+    /// </summary>
     public partial class MainForm : Form
     {
+        /// <summary>
+        ///     User-defined grammar
+        /// </summary>
         private Grammar grammar;
 
+        /// <summary>
+        ///     Generates empry grammar
+        /// </summary>
         public MainForm()
         {
             InitializeComponent();
@@ -11,6 +20,11 @@ namespace lab8
             grammar = new Grammar(new List<string>());
         }
 
+        /// <summary>
+        ///     Generates chains of characters corresponding to a given <see cref="lab8.Grammar"/>
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void GenetateChains(object sender, EventArgs e)
         {
             var generator = new WordGenerator(grammar.ParsingTree);
@@ -23,6 +37,11 @@ namespace lab8
             }
         }
 
+        /// <summary>
+        ///     Generates user-defined grammar
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void GenerateGrammar(object sender, EventArgs e)
         {
             var words = new List<string>();
@@ -41,6 +60,11 @@ namespace lab8
             grammar = new Grammar(words);
         }
 
+        /// <summary>
+        ///     Checks whether the entered chain conforms to the specified <see cref="lab8.Grammar"/>
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Verify(object sender, EventArgs e)
         {
             var checker = new WordChecker(grammar.ParsingTree);
