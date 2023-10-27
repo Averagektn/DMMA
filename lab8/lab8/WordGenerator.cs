@@ -1,12 +1,10 @@
-﻿using System.Reflection.Metadata.Ecma335;
-
-namespace lab8
+﻿namespace lab8
 {
     public sealed class WordGenerator
     {
         private Node parsingTree;
 
-        public WordGenerator(List<string> words) 
+        public WordGenerator(List<string> words)
         {
             parsingTree = Get_Tree(words);
         }
@@ -33,20 +31,39 @@ namespace lab8
             }
 
             parsingTree = head;
-            head = Merge();
+            Merge(parsingTree);
 
             return head;
         }
 
-        private Node Merge()
+        private void Merge(Node head)
         {
-            var a = parsingTree.GetChildren()[0].GetChildren()[0];
-            var b = parsingTree.GetChildren()[1].GetChildren()[0];
+            var roots = head.GetChildren();
+            var newRoot = new Node('\0');
 
-            a.Merge(b);
-            b.Merge(a);
+            if (roots.Count == 0)
+            {
+                return;
+            }
 
-            return a;
+            for (int i = 0; i < roots.Count; i++)
+            {
+                for (int j = i + 1; j < roots.Count; j++)
+                {
+                    if (roots[i].Symbol == roots[j].Symbol)
+                    {
+                        roots[j].Merge(roots[i]);
+                        roots[i].Merge(roots[j]);
+                    }
+                }
+            }
+            
+            for (int i = 0; i < roots.Count; i++)
+            {
+                newRoot.AddChildren(roots[i].GetChildren());
+            }
+
+            Merge(newRoot);
         }
 
     }

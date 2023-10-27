@@ -18,6 +18,14 @@
             return child;
         }
 
+        public void AddChildren(List<Node> children)
+        {
+            for (int i = 0; i < children.Count; i++)
+            {
+                this.children.Add(children[i]);
+            }
+        }
+
         public void RemoveChild(char symbol)
         {
             for (int i = 0; i < children.Count; i++)
@@ -62,6 +70,7 @@
         public void Merge(Node node)
         {
             var merging = node.GetChildren(); 
+
             for (int i = 0; i < merging.Count; i++)
             {
                 if (Contains(merging[i].Symbol))
@@ -73,6 +82,7 @@
                     AddChild(merging[i]);
                 }
             }
+
         }
 
     }
