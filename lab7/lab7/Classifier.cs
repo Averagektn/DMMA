@@ -1,7 +1,25 @@
 ﻿namespace lab7
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class Classifier
     {
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="referenceClass">
+        /// 
+        /// </param>
+        /// <param name="candidate">
+        /// 
+        /// </param>
+        /// <returns>
+        /// 
+        /// </returns>
+        /// <exception cref="NullReferenceException">
+        /// 
+        /// </exception>
         public static bool IsSameClass(Node referenceClass, List<Point> candidate)
         { 
             bool equals = false;
@@ -31,5 +49,7 @@
 
             return equals;
         }
+
     }
+
 }

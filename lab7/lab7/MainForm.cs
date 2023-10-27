@@ -1,17 +1,48 @@
 namespace lab7
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public partial class MainForm : Form
     {
+        /// <summary>
+        /// 
+        /// </summary>
         private const int POINT_RANGE = 10;
 
+        /// <summary>
+        /// 
+        /// </summary>
         private Node? tail;
+
+        /// <summary>
+        /// 
+        /// </summary>
         private Node? head;
+
+        /// <summary>
+        /// 
+        /// </summary>
         private readonly Graphics g;
+
+        /// <summary>
+        /// 
+        /// </summary>
         private readonly List<Point> points = new();
 
+        /// <summary>
+        /// 
+        /// </summary>
         private int templateLength = 0;
+
+        /// <summary>
+        /// 
+        /// </summary>
         private bool isDrawingTemplate;
 
+        /// <summary>
+        /// 
+        /// </summary>
         public MainForm()
         {
             InitializeComponent();
@@ -19,6 +50,11 @@ namespace lab7
             g = CreateGraphics();
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void MainForm_MouseDown(object sender, MouseEventArgs e)
         {
             if (isDrawingTemplate)
@@ -45,6 +81,11 @@ namespace lab7
                 new Rectangle(e.X - POINT_RANGE / 2, e.Y - POINT_RANGE / 2, POINT_RANGE, POINT_RANGE));
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void MainForm_MouseUp(object sender, MouseEventArgs e)
         {
             if (isDrawingTemplate)
@@ -65,6 +106,11 @@ namespace lab7
                 new Rectangle(e.X - POINT_RANGE / 2, e.Y - POINT_RANGE / 2, POINT_RANGE, POINT_RANGE));
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void TemplateIsOver(object sender, EventArgs e)
         {
             if (head is not null)
@@ -75,6 +121,11 @@ namespace lab7
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void CandidateIsOver(object sender, EventArgs e)
         {
             if (points.Count != 0)
@@ -94,15 +145,21 @@ namespace lab7
             points.Clear();
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void GenerateImage(object sender, EventArgs e)
         {
             if (head is not null)
             {
-                var drawer = new NodeDrawer(head.Center, head.Next, head.dx, head.dy);
+                var drawer = new NodeDrawer(head.Center, head.Next, head.DX, head.DY);
                 drawer.Draw(g, new Pen(Color.Red), new Point(Size.Width - 50, Size.Height - 200),
                     POINT_RANGE, templateLength);
             }
         }
+
     }
 
 }
