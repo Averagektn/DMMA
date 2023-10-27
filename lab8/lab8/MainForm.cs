@@ -6,7 +6,7 @@ namespace lab8
         {
             InitializeComponent();
 
-            var generator = new WordGenerator(new List<string>() { "aabc", "cabd", "bcba"});
+            var generator = new WordGenerator(new List<string>() { "aabc", "cabd", "bcba", "daae", "daac" });
 
 
 

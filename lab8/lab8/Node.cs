@@ -3,6 +3,7 @@
     public class Node
     {
         public char Symbol { get; private set; }
+
         private readonly List<Node> children;
 
         public Node(char symbol)
@@ -82,7 +83,6 @@
                     AddChild(merging[i]);
                 }
             }
-
         }
 
     }

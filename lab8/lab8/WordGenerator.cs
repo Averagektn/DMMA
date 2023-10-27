@@ -1,13 +1,42 @@
-﻿namespace lab8
+﻿using System.Diagnostics.Metrics;
+using System.Text;
+
+namespace lab8
 {
     public sealed class WordGenerator
     {
         private Node parsingTree;
+        private readonly Random random = new();
 
         public WordGenerator(List<string> words)
         {
             parsingTree = Get_Tree(words);
+
         }
+
+        public string GetString()
+        {
+            var head = parsingTree;
+            var children = head.GetChildren();
+            var chain = new StringBuilder();
+            
+            for (char? letter = GetRandomSymbol(children); letter is not null; letter = GetRandomSymbol(children))
+            {
+                chain.Append(letter);
+                head = head.GetChild((char)letter);
+                children = head.GetChildren();
+            }
+
+            return chain.ToString();
+        }
+
+        private char? GetRandomSymbol(List<Node> symbols)
+        {
+            int letterIndex = random.Next(symbols.Count);
+
+            return symbols.Count == 0 ? null :symbols[letterIndex].Symbol;
+        }
+
 
         private Node Get_Tree(List<string> words)
         {
