@@ -6,23 +6,33 @@
         public Node? Next { get; private set; }
 
         protected const int ERROR = 20;
-        protected int dx, dy, range;
+        public int dx { get; protected set; }
+        public int dy { get; protected set; }
+        protected int range;
 
         public Node(Point center)
         {
             Center = center;
+            Next = null;
             dx = 0;
             dy = 0;
             range = 0;
-            Next = null;
+        }
+
+        public Node(Point center, Node? next, int dx, int dy, int range) : this(center)
+        {
+            Next = next;
+            this.dx = dx;
+            this.dy = dy;
+            this.range = range;
         }
 
         public Node AddNext(Node next)
         {
             Next = next;
             range = GetRange(Next.Center, Center);
-            dx = Math.Abs(Next.Center.X - Center.X);
-            dy = Math.Abs(Next.Center.Y - Center.Y);
+            dx = Next.Center.X - Center.X;
+            dy = Next.Center.Y - Center.Y;
 
             return next;
         }
@@ -43,13 +53,32 @@
 
         protected bool IsInBounds(Point p1, Point p2)
         {
-            int dRange = GetRange(new Point(ERROR, 0), new Point(0, ERROR));
+            //int dRange = GetRange(new Point(ERROR, 0), new Point(0, ERROR));
 
-            bool isInXBounds = Math.Abs(p1.X - p2.X) <= dx + ERROR;
-            bool isInYBounds = Math.Abs(p1.Y - p2.Y) <= dy + ERROR;
-            bool isInRangeBounds = GetRange(p1, p2) <= range + dRange && GetRange(p1, p2) >= range - dRange;
+            bool isInXBounds;
+            if (dx >= 0)
+            {
+                isInXBounds = p2.X - p1.X <= dx + ERROR && p2.X - p1.X >= dx - ERROR;
+            }
+            else
+            {
+                isInXBounds = p2.X - p1.X >= dx - ERROR && p2.X - p1.X <= dx + ERROR;
+            }
 
-            return isInXBounds && isInYBounds && isInRangeBounds;
+            bool isInYBounds;
+            if (dy >= 0)
+            {
+                isInYBounds = p2.Y - p1.Y <= dy + ERROR && p2.Y - p1.Y >= dy - ERROR;
+            }
+            else
+            {
+                isInYBounds = p2.Y - p1.Y >= dy - ERROR && p2.Y - p1.Y <= dy + ERROR;
+            }
+            
+            //bool isInRangeBounds = GetRange(p1, p2) <= range + dRange && GetRange(p1, p2) >= range - dRange;
+
+            //return isInXBounds && isInYBounds && isInRangeBounds;
+            return isInXBounds && isInYBounds;
         }
 
     }

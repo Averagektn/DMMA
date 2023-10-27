@@ -77,16 +77,32 @@ namespace lab7
 
         private void CandidateIsOver(object sender, EventArgs e)
         {
-            points.Add(points[0]);
-
-            if (head is not null && templateLength == points.Count && Classifier.IsSameClass(head, points))
+            if (points.Count != 0)
             {
-                MessageBox.Show("Works!");
+                points.Add(points[0]);
+
+                if (head is not null && templateLength == points.Count && Classifier.IsSameClass(head, points))
+                {
+                    MessageBox.Show("The image corresponds to the given grammar");
+                }
+                else
+                {
+                    MessageBox.Show("The image does NOT correspond to the given grammar");
+                }
             }
 
             points.Clear();
         }
 
+        private void GenerateImage(object sender, EventArgs e)
+        {
+            if (head is not null)
+            {
+                var drawer = new NodeDrawer(head.Center, head.Next, head.dx, head.dy);
+                drawer.Draw(g, new Pen(Color.Red), new Point(Size.Width - 50, Size.Height - 200),
+                    POINT_RANGE, templateLength);
+            }
+        }
     }
 
 }

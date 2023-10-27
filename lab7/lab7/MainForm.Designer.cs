@@ -30,12 +30,13 @@
         {
             btnTemplateIsOver = new Button();
             btnCandidateIsOver = new Button();
+            btnGenerateImage = new Button();
             SuspendLayout();
             // 
             // btnTemplateIsOver
             // 
             btnTemplateIsOver.Location = new Point(90, 451);
-            btnTemplateIsOver.Margin = new Padding(4, 4, 4, 4);
+            btnTemplateIsOver.Margin = new Padding(4);
             btnTemplateIsOver.Name = "btnTemplateIsOver";
             btnTemplateIsOver.Size = new Size(200, 50);
             btnTemplateIsOver.TabIndex = 0;
@@ -46,7 +47,7 @@
             // btnCandidateIsOver
             // 
             btnCandidateIsOver.Location = new Point(695, 451);
-            btnCandidateIsOver.Margin = new Padding(4, 4, 4, 4);
+            btnCandidateIsOver.Margin = new Padding(4);
             btnCandidateIsOver.Name = "btnCandidateIsOver";
             btnCandidateIsOver.Size = new Size(200, 50);
             btnCandidateIsOver.TabIndex = 1;
@@ -54,16 +55,27 @@
             btnCandidateIsOver.UseVisualStyleBackColor = true;
             btnCandidateIsOver.Click += CandidateIsOver;
             // 
+            // btnGenerateImage
+            // 
+            btnGenerateImage.Location = new Point(393, 451);
+            btnGenerateImage.Name = "btnGenerateImage";
+            btnGenerateImage.Size = new Size(200, 50);
+            btnGenerateImage.TabIndex = 2;
+            btnGenerateImage.Text = "Generate image";
+            btnGenerateImage.UseVisualStyleBackColor = true;
+            btnGenerateImage.Click += GenerateImage;
+            // 
             // MainForm
             // 
             AutoScaleDimensions = new SizeF(11F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(984, 561);
+            Controls.Add(btnGenerateImage);
             Controls.Add(btnCandidateIsOver);
             Controls.Add(btnTemplateIsOver);
             Font = new Font("Segoe UI", 14F, FontStyle.Regular, GraphicsUnit.Point);
             FormBorderStyle = FormBorderStyle.FixedSingle;
-            Margin = new Padding(4, 4, 4, 4);
+            Margin = new Padding(4);
             MaximizeBox = false;
             Name = "MainForm";
             Text = "Lab7";
@@ -76,5 +88,6 @@
 
         private Button btnTemplateIsOver;
         private Button btnCandidateIsOver;
+        private Button btnGenerateImage;
     }
 }
