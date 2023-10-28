@@ -57,15 +57,16 @@
 
             while (nodesCount > 1 && curr is not null)
             {
-                x += curr.DX + random.Next(ERROR / 2);
-                y += curr.DY + random.Next(ERROR / 2);
-                curr = curr.Next;
+                x += curr.DX;// + random.Next(ERROR / 2);
+                y += curr.DY;// + random.Next(ERROR / 2);
+                //curr = curr.Next;
                 g.DrawEllipse(pen, new Rectangle(x - diameter / 2, y - diameter / 2, diameter, diameter));
                 g.FillEllipse(new SolidBrush(pen.Color), new Rectangle(x - diameter / 2, y - diameter / 2, diameter, diameter));
-                g.DrawLine(pen, point, new Point(x, y));
+                g.DrawLine(pen, point, new Point(x - diameter / 2, y - diameter / 2));
                 point = new Point(x, y);
                 curr = curr?.Next;
-                nodesCount -= 2;
+                //nodesCount -= 2;
+                nodesCount--;
             }
         }
 
