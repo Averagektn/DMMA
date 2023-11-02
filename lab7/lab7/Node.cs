@@ -8,7 +8,7 @@
         /// <summary>
         ///     Error range
         /// </summary>
-        protected const int ERROR = 40;
+        protected const int ERROR = 100;
 
         /// <summary>
         ///     Grammar value
