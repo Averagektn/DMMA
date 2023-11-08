@@ -58,4 +58,12 @@ Input data: a given set of terminal chains.
 Output data: a grammar capable of automatically generating the given chains, as well as an infinite number of chains similar in structure to the initial ones.
 ---
 ## Lab №9
+* Распознавание образов на основе искусственной нейронной сети
+Цель работы: научиться классифицировать объекты с помощью искусственной нейронной сети (ИНС).
+Исходные данные: обучающая выборка, количество классов.
+Выходные данные: классы и отнесенные к ним объекты
+* Pattern recognition on the basis of artificial neural network
+Purpose of work: to learn how to classify objects using artificial neural network (ANN).
+Input data: training sample, number of classes.
+Output data: classes and objects assigned to them
 ---
