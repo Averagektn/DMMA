@@ -44,16 +44,16 @@
             // 
             tbVerifyngString.Font = new Font("Segoe UI", 14F, FontStyle.Regular, GraphicsUnit.Point);
             tbVerifyngString.Location = new Point(409, 442);
-            tbVerifyngString.Margin = new Padding(4, 4, 4, 4);
+            tbVerifyngString.Margin = new Padding(4);
             tbVerifyngString.Name = "tbVerifyngString";
             tbVerifyngString.Size = new Size(167, 32);
             tbVerifyngString.TabIndex = 0;
             // 
             // btnGenerateGrammar
             // 
-            btnGenerateGrammar.Font = new Font("Segoe UI", 14F, FontStyle.Regular, GraphicsUnit.Point);
+            btnGenerateGrammar.Font = new Font("Snap ITC", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
             btnGenerateGrammar.Location = new Point(41, 482);
-            btnGenerateGrammar.Margin = new Padding(4, 4, 4, 4);
+            btnGenerateGrammar.Margin = new Padding(4);
             btnGenerateGrammar.Name = "btnGenerateGrammar";
             btnGenerateGrammar.Size = new Size(275, 66);
             btnGenerateGrammar.TabIndex = 1;
@@ -63,9 +63,9 @@
             // 
             // btnGenetateChains
             // 
-            btnGenetateChains.Font = new Font("Segoe UI", 14F, FontStyle.Regular, GraphicsUnit.Point);
+            btnGenetateChains.Font = new Font("Snap ITC", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
             btnGenetateChains.Location = new Point(669, 482);
-            btnGenetateChains.Margin = new Padding(4, 4, 4, 4);
+            btnGenetateChains.Margin = new Padding(4);
             btnGenetateChains.Name = "btnGenetateChains";
             btnGenetateChains.Size = new Size(275, 66);
             btnGenetateChains.TabIndex = 2;
@@ -75,9 +75,9 @@
             // 
             // btnVerify
             // 
-            btnVerify.Font = new Font("Segoe UI", 14F, FontStyle.Regular, GraphicsUnit.Point);
+            btnVerify.Font = new Font("Snap ITC", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
             btnVerify.Location = new Point(355, 482);
-            btnVerify.Margin = new Padding(4, 4, 4, 4);
+            btnVerify.Margin = new Padding(4);
             btnVerify.Name = "btnVerify";
             btnVerify.Size = new Size(275, 66);
             btnVerify.TabIndex = 3;
@@ -90,7 +90,7 @@
             dgvGrammar.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvGrammar.Columns.AddRange(new DataGridViewColumn[] { Grammar });
             dgvGrammar.Location = new Point(-4, 3);
-            dgvGrammar.Margin = new Padding(4, 4, 4, 4);
+            dgvGrammar.Margin = new Padding(4);
             dgvGrammar.Name = "dgvGrammar";
             dgvGrammar.RowTemplate.Height = 28;
             dgvGrammar.Size = new Size(490, 400);
@@ -107,7 +107,7 @@
             dgvChains.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvChains.Columns.AddRange(new DataGridViewColumn[] { Chains });
             dgvChains.Location = new Point(494, 3);
-            dgvChains.Margin = new Padding(4, 4, 4, 4);
+            dgvChains.Margin = new Padding(4);
             dgvChains.Name = "dgvChains";
             dgvChains.RowTemplate.Height = 28;
             dgvChains.Size = new Size(490, 400);
@@ -124,6 +124,7 @@
             // 
             AutoScaleDimensions = new SizeF(11F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackColor = SystemColors.ActiveCaptionText;
             ClientSize = new Size(984, 561);
             Controls.Add(dgvChains);
             Controls.Add(dgvGrammar);
@@ -133,7 +134,7 @@
             Controls.Add(tbVerifyngString);
             Font = new Font("Segoe UI", 14F, FontStyle.Regular, GraphicsUnit.Point);
             FormBorderStyle = FormBorderStyle.FixedSingle;
-            Margin = new Padding(4, 4, 4, 4);
+            Margin = new Padding(4);
             MaximizeBox = false;
             Name = "MainForm";
             Text = "Lab 8";
