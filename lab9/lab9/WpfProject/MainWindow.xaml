@@ -1,7 +1,7 @@
 ﻿<Window x:Class="WpfProject.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="Lab 9" Height="300" Width="800" MinHeight="300" MinWidth="800">
+        Title="Lab 9" Height="300" Width="800" MinHeight="300" MinWidth="800" FontFamily="Algerian" Background="#FFE0B4B4">
     <Window.Resources>
         <Style x:Key="TextBlockStyle">
             <Setter Property="Control.FontFamily" Value="Open Sans" />
@@ -43,11 +43,11 @@
                             <RowDefinition/>
                             <RowDefinition/>
                         </Grid.RowDefinitions>
-                        <TextBlock Text="Classification result" Style="{StaticResource TextBlockStyle}"/>
-                        <TextBox x:Name="ClassificationResultLabel" Style="{StaticResource TextBoxStyle}" Margin="0,46,6,0" Grid.RowSpan="2" VerticalAlignment="Top" />
-                        <Button Grid.Row="2" x:Name="ClassificationButton" Style="{StaticResource ButtonStyle}" Content="Classify" IsEnabled="False" Click="ClassificationButton_Click" Margin="0,0,6,6"/>
-                        <Button x:Name="OpenReadyNetwork" Content="Load network" Style="{StaticResource ButtonStyle}" Click="OpenReadyNetwork_Click" Margin="0,20,6,32" Grid.RowSpan="2" Grid.Row="3" />
-                        <Button x:Name="LoadImageButton" Content="Load image" Style="{StaticResource ButtonStyle}" IsEnabled="False" Click="LoadImageButton_Click" Margin="0,29,6,23" Grid.Row="4" Grid.RowSpan="2" />
+                        <TextBlock Text="Classification result" Style="{StaticResource TextBlockStyle}" FontFamily="Engravers MT"/>
+                        <TextBox x:Name="ClassificationResultLabel" Style="{StaticResource TextBoxStyle}" Margin="0,46,6,0" Grid.RowSpan="2" VerticalAlignment="Top" TextBlock.FontFamily="Engravers MT" />
+                        <Button Grid.Row="2" x:Name="ClassificationButton" Style="{StaticResource ButtonStyle}" Content="Classify" IsEnabled="False" Click="ClassificationButton_Click" Margin="0,0,6,6" TextBlock.FontFamily="Engravers MT" Background="#FFA0DA9F"/>
+                        <Button x:Name="OpenReadyNetwork" Content="Load network" Style="{StaticResource ButtonStyle}" Click="OpenReadyNetwork_Click" Margin="0,20,6,32" Grid.RowSpan="2" Grid.Row="3" TextBlock.FontFamily="Engravers MT" Background="#FF4B8D4A" />
+                        <Button x:Name="LoadImageButton" Content="Load image" Style="{StaticResource ButtonStyle}" IsEnabled="False" Click="LoadImageButton_Click" Margin="0,29,6,23" Grid.Row="4" Grid.RowSpan="2" TextBlock.FontFamily="Engravers MT" Background="#FF4B8D4A" />
                     </Grid>
                 </Border>
             </Grid>
