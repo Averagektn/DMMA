@@ -35,40 +35,50 @@
             // 
             // btnTemplateIsOver
             // 
+            btnTemplateIsOver.BackColor = Color.FromArgb(255, 128, 0);
+            btnTemplateIsOver.Font = new Font("Showcard Gothic", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
+            btnTemplateIsOver.ForeColor = SystemColors.ActiveCaptionText;
             btnTemplateIsOver.Location = new Point(90, 451);
             btnTemplateIsOver.Margin = new Padding(4);
             btnTemplateIsOver.Name = "btnTemplateIsOver";
-            btnTemplateIsOver.Size = new Size(200, 50);
+            btnTemplateIsOver.Size = new Size(200, 62);
             btnTemplateIsOver.TabIndex = 0;
             btnTemplateIsOver.Text = "Template is over";
-            btnTemplateIsOver.UseVisualStyleBackColor = true;
+            btnTemplateIsOver.UseVisualStyleBackColor = false;
             btnTemplateIsOver.Click += TemplateIsOver;
             // 
             // btnCandidateIsOver
             // 
+            btnCandidateIsOver.BackColor = Color.FromArgb(255, 128, 0);
+            btnCandidateIsOver.Font = new Font("Showcard Gothic", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
+            btnCandidateIsOver.ForeColor = SystemColors.ActiveCaptionText;
             btnCandidateIsOver.Location = new Point(695, 451);
             btnCandidateIsOver.Margin = new Padding(4);
             btnCandidateIsOver.Name = "btnCandidateIsOver";
-            btnCandidateIsOver.Size = new Size(200, 50);
+            btnCandidateIsOver.Size = new Size(200, 62);
             btnCandidateIsOver.TabIndex = 1;
             btnCandidateIsOver.Text = "Candidate is over";
-            btnCandidateIsOver.UseVisualStyleBackColor = true;
+            btnCandidateIsOver.UseVisualStyleBackColor = false;
             btnCandidateIsOver.Click += CandidateIsOver;
             // 
             // btnGenerateImage
             // 
+            btnGenerateImage.BackColor = Color.FromArgb(255, 128, 0);
+            btnGenerateImage.Font = new Font("Showcard Gothic", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
+            btnGenerateImage.ForeColor = SystemColors.ActiveCaptionText;
             btnGenerateImage.Location = new Point(393, 451);
             btnGenerateImage.Name = "btnGenerateImage";
-            btnGenerateImage.Size = new Size(200, 50);
+            btnGenerateImage.Size = new Size(200, 62);
             btnGenerateImage.TabIndex = 2;
             btnGenerateImage.Text = "Generate image";
-            btnGenerateImage.UseVisualStyleBackColor = true;
+            btnGenerateImage.UseVisualStyleBackColor = false;
             btnGenerateImage.Click += GenerateImage;
             // 
             // MainForm
             // 
             AutoScaleDimensions = new SizeF(11F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackColor = Color.FromArgb(64, 64, 64);
             ClientSize = new Size(984, 561);
             Controls.Add(btnGenerateImage);
             Controls.Add(btnCandidateIsOver);
